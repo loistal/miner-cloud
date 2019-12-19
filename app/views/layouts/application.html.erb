@@ -1,18 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>MinerCloud</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>MinerCloud</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
+<body>
+
+  <div class="hero-miner">
 
     <%= render 'layouts/header' %>
 
-    <%= yield %>
-  </body>
+    <div id="hero-container" class="container">
+      <div class="row">
+        <div class="col-md-8">
+         <h1 class="white-text">🇯🇵 All-in-one sentence mining</h1>
+         <p id="mission" class="white-text">Miner.cloud is an all-in-one platform for <b> AJATTers, MIA followers, and Japanese learners</b>.</p>          
+       </div>
+       <div class="col-md-4">
+         <div class="video-enroll">
+            <%= image_tag("video-explainer.jpg", :alt => "video", :class => "video-explainer") %>
+
+           <form id="homepage-signup">
+            <div class="form-group">
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <button class="btn btn-primary miner-button full-width">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<%= yield %>
+</body>
 </html>
