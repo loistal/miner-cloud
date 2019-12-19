@@ -35,24 +35,29 @@
                     1 month: $10/month <br>
                     12 month: $99/year
                   </b>
-                    <br>
-                    <small>Save 18% per year: $8.24/month </small>
+                  <br>
+                  <small>Save 18% per year: $8.24/month </small>
                 </p>
 
-                </div>
-                <form id="homepage-signup">
-                  <div class="form-group">
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                  </div>
-                  <button type="button" class="btn btn-primary miner-button full-width" data-toggle="modal" data-target="#exampleModal" data-whatever="">Start mining</button>
-
-                </form>
-                <p align="center">Already a member? <a href="#">Log in</a></p>
               </div>
+
+              <%= form_for(:user, html: {role: "form", id: "homepage-signup"}, url: signup_path) do |f| %>
+              <div class="form-group">
+                <%= f.email_field :email, placeholder: "Enter your email", class: "form-control" %>
+
+
+                <%= f.password_field :password, placeholder: "Choose a password" , class: "form-control" %>
+
+                <%= f.button "Start mining", class: "btn btn-primary miner-button full-width" %>
+              </div>
+              <% end %>
+              <p align="center">Already a member? <a href="#">Log in</a></p>
+              
             </div>
           </div>
         </div>
-
       </div>
+
     </div>
   </div>
+</div>
