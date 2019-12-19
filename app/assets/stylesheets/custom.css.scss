@@ -1,1 +1,33 @@
 @import "bootstrap";
+
+body {
+	font-family: nunito, Arial, Helvetica, sans-serif;
+}
+
+.logo-header {
+	height: 40px;
+}
+
+.miner-button {
+	background-color: #FF4742;
+	border-color: #FF4742;
+	font-weight: 700;
+}
+
+.miner-button:hover {
+	background-color: #DD3D39;
+	border-color: #DD3D39;
+}
+
+.miner-menu-item {
+	color: white !important;
+	font-weight: 700;
+}
+
+.navbar {
+	padding: 10px 60px;
+}
+
+.nav-item {
+	margin: 0 10px;
+}
