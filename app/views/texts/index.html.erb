@@ -2,7 +2,7 @@
 
 <div class="container">
 
-	<h1 align="center">📕 Library</h1>
+	<h1 id="library-title" align="center">📕 Library</h1>
 
 
 	<div class="choose-text">
@@ -42,7 +42,41 @@
 				<% end %>
 			</div>
 
+			<p align="center" class="search-results">
+				<% 
 
+				def difficulty_to_string(difficulty_int)
+					case difficulty_int
+					when 1
+						return "beginner"
+					when 2
+						return "upper beginner"
+					when 3
+						return "intermediate"
+					when 4
+						return "upper intermediate"
+					when 5
+						return "advanced"
+					else
+						return difficulty_int.to_s
+					end
+				end 
+
+				%>
+
+				<% if @articles.count == 0 %>
+
+				We don't have any <b class="highlighted"><%= difficulty_to_string(params[:difficulty].to_i) %></b> articles in <b class="highlighted"><%= params[:language].capitalize %></b>. 
+				<a href="#" class="link-miner" data-toggle="modal" data-target="#uploadArticleModal">
+						Create one now.
+					</a>
+
+				<% else %>
+
+				🔍 We found <%= @articles.count %> <b class="highlighted"><%= difficulty_to_string(@articles.first.difficulty) %></b> articles in <b class="highlighted"><%= @articles.first.language.capitalize %></b>
+
+				<% end %>
+			</p>
 			<%= render @articles %>
 
 

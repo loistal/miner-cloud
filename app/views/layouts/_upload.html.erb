@@ -40,19 +40,19 @@
 
               <div class="col-md-3">
                <!-- Change the hidden field depending on the dropdown that follows -->
-
-              </div>
-
-          </div>
-        </div>
-        
-              <%= select_tag(:difficulty, raw('
+				<%= select_tag(:difficulty, raw('
                 <option value="1">😁 Beginner</option>
                 <option value="2">🏃‍♂️ Upper Beginner</option>
                 <option value="3">👨‍🎓 Intermediate</option>
                 <option value="4">🏋️‍♂️ Upper Intermediate</option>
                 <option value="5">🔥 Advanced</option>
               '), class: "form-control",) %>
+              </div>
+
+          </div>
+        </div>
+        
+              
         <%= f.text_area :lesson, placeholder: "Paste the article here" , class: "form-control", id: "article-textarea" %>
 
         <%= f.button "Upload", class: "btn btn-primary miner-button full-width" %>

@@ -157,7 +157,7 @@ hr {
 	width: 50%;
  	margin-left: auto;
   	margin-right: auto;
-  	margin-top: 20px;
+  	margin-top: 40px;
   	margin-bottom: 50px;
 }
 
@@ -245,4 +245,24 @@ hr {
 .filter-article-label {
 	margin-bottom: 2px;
 	font-weight: 700;
+}
+
+.link-miner {
+	color: black;
+	font-weight: 700;
+	text-decoration: underline;
+}
+
+.link-miner:hover {
+	color: black;
+}
+
+.search-results {
+	font-size: 2em;
+	font-weight: 700;
+	margin-bottom: 30px;
+}
+
+#library-title {
+	margin-top: 40px;
 }

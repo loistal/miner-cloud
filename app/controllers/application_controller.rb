@@ -16,4 +16,21 @@ class ApplicationController < ActionController::Base
 			redirect_to login_path
 		end
 	end
+
+	def difficulty_to_string(difficulty_int)
+		case difficulty_int
+		when 1
+		  return "beginner"
+		when 2
+		  return "upper beginner"
+		when 3
+		  return "intermediate"
+		when 4
+		  return "upper intermediate"
+		when 5
+		  return "advanced"
+		else
+		  "Error with the level of difficulty"
+		end
+	end
 end
