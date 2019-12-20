@@ -1,0 +1,15 @@
+<a class="row-text-link" href="#">
+	<div class="row row-text">
+		<div class="col-md-2">
+			<p class="text-icon" align="center">🚀</p>
+		</div>	
+		<div class="col-md-8">
+			<p>uploaded by <b><%= article.user.email %></b></p>
+			<h2><%= article.title %></h2>
+			<div><%= article.difficulty %></div>
+		</div>
+		<div class="col-md-2">
+			📎 <%= article.created_at %>
+		</div>
+	</div>
+</a>
