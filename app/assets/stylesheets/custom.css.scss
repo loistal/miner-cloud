@@ -154,7 +154,7 @@ hr {
 	background-color: #FFFDE9;
 	padding: 30px;
 	border-radius: 10px;
-	width: 70%;
+	width: 50%;
  	margin-left: auto;
   	margin-right: auto;
   	margin-top: 20px;
@@ -235,4 +235,14 @@ hr {
 
 #title-upload {
 	padding-left: 0;
+}
+
+.filter-articles {
+	margin-top: 0;
+	margin-bottom: 30px;
+}
+
+.filter-article-label {
+	margin-bottom: 2px;
+	font-weight: 700;
 }

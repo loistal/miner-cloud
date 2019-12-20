@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 
 	post 'upload', to: 'articles#create'
 
-	
+	post 'filter', to: 'texts#index'
 
 end

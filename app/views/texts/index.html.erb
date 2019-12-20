@@ -1,37 +1,50 @@
 <%= render 'layouts/header' %>
 
-<h1 align="center">📕 Library</h1>
-
 <div class="container">
-	<div class="row choose-text">
-		<div class="col-md-6">
 
-			<b>🏗 Choose a text</b>
+	<h1 align="center">📕 Library</h1>
 
-			<div id="dropdown-level" class="dropdown">
-				<button class="btn btn-secondary dropdown-toggle dropdown-miner" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Difficulty level
-				</button>
-				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-					<a class="dropdown-item" href="#">🚀 Advanced</a>
-					<a class="dropdown-item" href="#">🔥 Upper Intermediate</a>
-					<a class="dropdown-item" href="#">🚴‍♀️ Intermediate</a>
-					<a class="dropdown-item" href="#">🏝 Upper Beginner</a>
-					<a class="dropdown-item" href="#">🐣 Beginner</a>
 
-				</div>
-			</div>	
+	<div class="choose-text">
+		<%= form_for(:article, html: {role: "form", id: "upload-modal-form"}, url: filter_path) do |f| %>
+
+		
+		<%= label_tag(:language, "🌎 Language" , class: "filter-article-label") %>
+		<%= select_tag(:language, raw('
+			<option value="english">🇺🇸 English</option>
+			<option value="spanish">🇪🇸 Spanish</option>
+			<option value="french">🇫🇷 French</option>
+			<option value="korean">🇰🇷 Korean</option>
+			<option value="german">🇩🇪 German</option>
+			<option value="italian">🇮🇹 Italian</option>
+			<option value="russian">🇷🇺 Russian</option>
+			<option value="portuguese">🇵🇹 Portuguese</option>
+			<option value="hindi">🇮🇳 Hindi</option>
+			<option value="dutch">🇳🇱 Dutch</option>
+			<option value="turkish">🇹🇷 Turkish</option>
+			<option value="polish">🇵🇱 Polish</option>
+			'), class: "form-control filter-articles") %>
+
+
+			<%= label_tag(:difficulty, "💪 Difficulty", class: "filter-article-label") %>
+			<%= select_tag(:difficulty, raw('
+				<option value="1">😁 Beginner</option>
+				<option value="2">🏃‍♂️ Upper Beginner</option>
+				<option value="3">👨‍🎓 Intermediate</option>
+				<option value="4">🏋️‍♂️ Upper Intermediate</option>
+				<option value="5">🔥 Advanced</option>
+				'), class: "form-control filter-articles") %>
+
+
+				<%= f.button "Search", class: "btn btn-primary miner-button full-width" %>
+
+
+				<% end %>
+			</div>
+
+
+			<%= render @articles %>
+
+
 
 		</div>
-		<div class="col-md-6">
-			<b>🌎 Upload your own</b>
-			<button id="upload-text" type="button" class="btn btn-primary miner-button" data-toggle="modal" data-target="#exampleModal" data-whatever="">Upload your own</button>
-
-		</div>
-	</div>
-
-	<%= render @articles %>
-
-
-</div>
-
