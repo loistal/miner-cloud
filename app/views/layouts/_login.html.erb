@@ -1,0 +1,27 @@
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div id="login-modal-content" class="modal-content">
+
+			<div class="modal-body">
+
+				<div align="center" class="title-modal">🎉 Log in</div>
+
+				<%= form_for(:session, html: {class: "", role: "form", id: "loginFormRoot"}, url: login_path) do |f| %>
+				<div class="field">
+					<%= f.text_field :email, placeholder: "Username", class: "form-control" %>
+				</div>
+				<div class="field">
+					<%= f.password_field :password, placeholder: "Password", class: "form-control" %>
+				</div>
+				<%= f.button "Log in", class: "btn btn-primary miner-button full-width" %>
+
+				<% end %>
+			</div>
+
+		</div>
+	</div>
+</div>
