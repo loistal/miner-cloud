@@ -4,4 +4,6 @@ Rails.application.routes.draw do
 
 	post 'signup', to: 'users#create'
 
+	get 'text', to: 'texts#index'
+
 end

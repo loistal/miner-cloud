@@ -5,9 +5,9 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 
 		if @user.save 
-			flash[:now] = "Thanks for signing up!"
+			redirect_to text_path
 		else
-			flash[:now] = "We couldn't create your account" 
+			# do something
 		end
 
 	end

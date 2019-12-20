@@ -149,3 +149,60 @@ hr {
 .form-control {
 	margin: 10px 0;
 }
+
+.choose-text {
+	background-color: #FFFDE9;
+	padding: 30px;
+	border-radius: 10px;
+	width: 70%;
+ 	margin-left: auto;
+  	margin-right: auto;
+  	margin-top: 20px;
+  	margin-bottom: 50px;
+}
+
+.dropdown-miner {
+	background-color: #F5F5F5;
+	color: black;
+}
+
+.dropdown-miner:hover {
+	background-color: #F5F5F5;
+	color: black;
+}
+
+#dropdown-level {
+	margin-top: 10px;
+}
+
+#upload-text {
+	margin-top: 10px;
+	display: block;
+}
+
+.text-icon {
+	font-size: 80px;
+	margin-bottom: 0;
+}
+
+.texts-divider {
+	margin-top: 0;
+}
+
+.row-text-link {
+	color: black;
+}
+
+.row-text-link:hover {
+	text-decoration: none;
+	color: black;
+}
+
+.row-text {
+	border-top: 1px solid #E7E7E7;
+	padding-top: 20px;
+}
+
+.row-text:hover {
+	background-color: #F5F5F5;
+}

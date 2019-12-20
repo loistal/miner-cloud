@@ -11,32 +11,7 @@
 
 <body>
 
-  <div class="hero-miner">
-
-    <%= render 'layouts/header' %>
-
-    <div id="hero-container" class="container">
-      <div class="row">
-        <div class="col-md-8">
-         <h1 class="white-text">🇯🇵 All-in-one sentence mining</h1>
-         <p id="mission" class="white-text">Miner.cloud is an all-in-one platform for <b> AJATTers, MIA followers, and Japanese learners</b>.</p>          
-       </div>
-       <div class="col-md-4">
-         <div class="video-enroll">
-          <%= image_tag("video-explainer.jpg", :alt => "video", :class => "video-explainer") %>
-
-          <form id="homepage-signup">
-            <div class="form-group">
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            </div>
-            <button type="button" class="btn btn-primary miner-button full-width" data-toggle="modal" data-target="#exampleModal" data-whatever="">Start mining</button>
-          </form>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
+  
 
 <%= yield %>
 
