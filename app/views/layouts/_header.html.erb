@@ -11,6 +11,11 @@
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
 					<% if logged_in? %>
+					
+					<%= link_to "Library", text_path, class: "miner-menu-item" %>
+					<%= link_to "Upload an article", text_path, class: "miner-menu-item" %>
+					<%= link_to "SRS", text_path, class: "miner-menu-item" %>
+					<%= link_to "Account", text_path, class: "miner-menu-item" %>
 					<%= link_to "Logout", logout_path, method: :delete, class: "miner-menu-item" %>
 					<% else %>
 					<a href="#" class="miner-menu-item" data-toggle="modal" data-target="#loginModal">Log in</a>
