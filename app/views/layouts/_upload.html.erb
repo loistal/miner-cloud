@@ -1,0 +1,62 @@
+<div class="modal fade" id="uploadArticleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      <div class="modal-body">
+        <div align="center" class="title-modal">Import an article 📗</div>
+        <%= form_for(:article, html: {role: "form", id: "upload-modal-form"}, url: upload_path) do |f| %>
+        <div class="form-group">
+
+
+          <div class="container-fluid">
+            <div class="row">
+              <div id="title-upload" class="col-md-6">
+                <%= f.text_field :title, placeholder: "Title of the article", class: "form-control" %>
+              </div>
+
+              <div class="col-md-3">
+               <!-- Change the hidden field depending on the dropdown that follows -->
+               <%= hidden_field_tag(:language, "English") %>
+
+              <%= select_tag(:language, raw('
+                <option>🇺🇸 English</option>
+                <option>🇪🇸 Spanish</option>
+                <option>🇫🇷 French</option>
+                <option>🇰🇷 Korean</option>
+                <option>🇩🇪 German</option>
+                <option>🇮🇹 Italian</option>
+                <option>🇷🇺 Russian</option>
+                <option>🇵🇹 Portuguese</option>
+                <option>🇮🇳 Hindi</option>
+                <option>🇳🇱 Dutch</option>
+                <option>🇹🇷 Turkish</option>
+                <option>🇵🇱 Polish</option>
+              '), class: "form-control",) %>
+              </div>
+
+              <div class="col-md-3">
+               <!-- Change the hidden field depending on the dropdown that follows -->
+               <%= hidden_field_tag(:language, "English") %>
+
+              <%= select_tag(:language, raw('
+                <option>😁 Beginner</option>
+                <option>🏃‍♂️ Upper Beginner</option>
+                <option>👨‍🎓 Intermediate</option>
+                <option>🏋️‍♂️ Upper Intermediate</option>
+                <option>🔥 Advanced</option>
+              '), class: "form-control",) %>
+              </div>
+
+          </div>
+        </div>
+
+        <%= f.text_area :lesson, placeholder: "Paste the article here" , class: "form-control", id: "article-textarea" %>
+
+        <%= f.button "Upload", class: "btn btn-primary miner-button full-width" %>
+      </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+</div>

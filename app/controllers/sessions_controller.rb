@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
 			redirect_to root_path 
 		else
 			# flash[:now] = "Something is wrong with the information you provided"
-			render root_path
+			redirect_to root_path
 		end
 	end
 
