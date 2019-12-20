@@ -8,18 +8,18 @@
 			<a class="navbar-brand" href="#">
 				<%= image_tag("logo.png", :alt => "logo", :class => "d-inline-block align-top logo-header") %>
 			</a>
-		</ul>
-
-		<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-					<a class="nav-link miner-menu-item" href="#">Log in</a>
+					<% if logged_in? %>
+					<%= link_to "Logout", logout_path, method: :delete, class: "item" %>
+					<% else %>
+					<%= link_to "Log in", login_path, class: "item" %>
+					<% end %>
 				</li>
-				<li class="nav-item">
-					<button class="btn btn-primary miner-button" type="submit">Sign up</button>
-				</li>
+				
 			</ul>
-		</div>
+		</ul>
+
 	</div>
 </div>
 </nav>
