@@ -9,7 +9,8 @@ class ArticlesController < ApplicationController
 			title: params[:article][:title])
 
 		if @article.save 
-			redirect_to text_path
+			redirect_to controller: 'articles', action: "show", id: @article.id
+
 		else
 			# do something
 			redirect_to text_path
