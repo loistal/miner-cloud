@@ -18,6 +18,23 @@
 //= require turbolinks
 //= require_tree .
 
+loadInfoPhrase = function() {
+	if (top.location.pathname.includes('/articles/')) {
+
+		var text = "";
+	    if (window.getSelection) {
+	    	//alert("selection");
+	        text = window.getSelection().toString();
+
+	        if(text != "") {
+	        	alert(text);
+	        }
+	    }
+
+
+	}
+}
+
 change_body_color = function() {
 	if (top.location.pathname.includes('/articles/')) {
 		$("body").css("background-color","#FBFBFB");
@@ -28,4 +45,5 @@ change_body_color = function() {
 
 $(document).on('turbolinks:load', function(){
 	change_body_color();
+	get_translation();
 })

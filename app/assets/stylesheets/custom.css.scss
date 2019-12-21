@@ -1,5 +1,13 @@
 @import "bootstrap";
 
+::-moz-selection { /* Code for Firefox */
+  background: #FFFC55;
+}
+
+::selection {
+  background: #FFFC55;
+}
+
 body {
 	font-family: nunito, Arial, Helvetica, sans-serif;
 	font-size: 16px;
