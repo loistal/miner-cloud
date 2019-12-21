@@ -266,3 +266,40 @@ hr {
 #library-title {
 	margin-top: 40px;
 }
+
+.article-section {
+	
+}
+
+.article-text {
+	font-size: 1.5em;
+	height: 450px;
+	overflow: auto;
+}
+
+.article-title  {
+	font-size: 2em;
+	margin-bottom: 10px;
+
+}
+
+.miner-container {
+	padding: 40px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 0 0 30px #DBDBDB;
+}
+
+#row-article {
+	padding: 20px;
+}
+
+.word-highlighted {
+	font-size: 1.5em;
+	font-weight: 700;
+	background-color: #FFFC55;
+}
+
+#save-srs {
+	margin-bottom: 30px;
+}

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+	resources :articles
+	
 	root 'sessions#index'
 
 	post 'signup', to: 'users#create'

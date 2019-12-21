@@ -18,3 +18,14 @@
 //= require turbolinks
 //= require_tree .
 
+change_body_color = function() {
+	if (top.location.pathname.includes('/articles/')) {
+		$("body").css("background-color","#FBFBFB");
+	} else {
+		$("body").css("background-color","#FBFBFB");
+	}
+}
+
+$(document).on('turbolinks:load', function(){
+	change_body_color();
+})
