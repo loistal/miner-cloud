@@ -18,6 +18,36 @@
 //= require turbolinks
 //= require_tree .
 
+prepareNextCard = function() {
+	$("#answer-button").css("display", "block");
+	$("#again-button").css("display", "none");
+	$("#good-button").css("display", "none");
+	$("#card-answer").css("display", "none");
+}
+
+masteredClicked = function() {
+	prepareNextCard();
+}
+
+deleteClicked = function() {
+	prepareNextCard();
+}
+
+displayAnswer = function() {
+	$("#answer-button").css("display", "none");
+	$("#again-button").css("display", "block");
+	$("#good-button").css("display", "block");
+	$("#card-answer").css("display", "block");
+}
+
+againClicked = function() {
+	prepareNextCard();
+}
+
+goodClicked = function() {
+	prepareNextCard();
+}
+
 adapt_navbar_color = function() {
 	if (top.location.pathname != "/") {
 		$("#miner-navbar").css("background-color","rgba(255, 255, 255, 1)");
@@ -29,29 +59,29 @@ loadInfoPhrase = function() {
 	if (top.location.pathname.includes('/articles/')) {
 
 		var text = "";
-	    if (window.getSelection) {
+		if (window.getSelection) {
 	    	//alert("selection");
-	        text = window.getSelection().toString();
+	    	text = window.getSelection().toString();
 
-	        if(text != "") {
-	        	$(".word-highlighted").text(text);
+	    	if(text != "") {
+	    		$(".word-highlighted").text(text);
 
-	        	var data = { 
-	        		key: "AIzaSyAZRIGDoQtbpumlDHk4M4IWvu9TobmtXSM", 
-	        		q: text, 
-	        		target: "en", 
-	        	}
+	    		var data = { 
+	    			key: "AIzaSyAZRIGDoQtbpumlDHk4M4IWvu9TobmtXSM", 
+	    			q: text, 
+	    			target: "en", 
+	    		}
 
 	        	// Ask for the translation using the API key from the Google account
 	        	$.getJSON("https://translation.googleapis.com/language/translate/v2", data)
-					.done(function(data) {
-						console.log(data.data.translations[0].translatedText);
-    					$("#translation").text(data.data.translations[0].translatedText);
-  					})
-  					.fail(function(data) {
-    					alert( "error" );
-    					console.log(data);
-  					});
+	        	.done(function(data) {
+	        		console.log(data.data.translations[0].translatedText);
+	        		$("#translation").text(data.data.translations[0].translatedText);
+	        	})
+	        	.fail(function(data) {
+	        		alert( "error" );
+	        		console.log(data);
+	        	});
 	        }
 	    }
 

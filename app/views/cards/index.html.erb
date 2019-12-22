@@ -4,7 +4,7 @@
 
 			<div id="card-content">
 				<p id="word-recall" align="center" class="card-text">Problem</p>
-				<p align="center" class="card-text">問題 <a href="">🔈</a></p>		
+				<p id="card-answer" align="center" class="card-text">問題 <a href="">🔈</a></p>		
 			</div>
 
 		</div>
@@ -14,11 +14,14 @@
 
 		<div class="col-md-3 miner-container">
 			<div id="card-buttons" class="row">
-				
-				<div class="col-md-6 col-button">
+				<div id="answer-button" class="col-md-12 col-button">
+					<button onclick="displayAnswer()" type="button" class="btn btn-primary miner-button full-width">Answer</button>
+				</div>
+
+				<div onclick="againClicked()" id="again-button" class="col-md-6 col-button">
 					<button type="button" class="btn btn-primary miner-button full-width">Again</button>
 				</div>
-				<div class="col-md-6 col-button">
+				<div onclick="goodClicked()" id="good-button" class="col-md-6 col-button">
 					<button type="button" class="btn btn-primary miner-button full-width">Good</button>
 				</div>
 			</div>	
@@ -31,8 +34,8 @@
 				<li>Failed recalls: <b>1</b></li>
 			</ul>
 
-			<p><a href="" class="link-miner">Mark as mastered 🚀</a></p>
-			<p><a href="" class="link-miner">Delete from deck 🗑</a></p>
+			<p onClick="masteredClicked()" class="link-miner">Mark as mastered 🚀</p>
+			<p onClick="deleteClicked()" class="link-miner">Delete from deck 🗑</p>
 		</div>
 	</div>
 </div>
