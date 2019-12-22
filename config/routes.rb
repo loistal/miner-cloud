@@ -15,4 +15,6 @@ Rails.application.routes.draw do
 
 	post 'filter', to: 'texts#index'
 
+	get 'card', to: 'cards#index'
+
 end
