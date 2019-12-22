@@ -48,7 +48,6 @@ hr {
 }
 
 #hero-container {
-	margin-top: 50px;
 }
 
 #video-homepage {
@@ -87,6 +86,8 @@ hr {
 	background-image: asset-url('hero-background.jpg');
 	background-size: cover;
 	height: 400px;
+	padding-top: 150px;
+	margin-top: -100px;
 }
 
 .full-width {
@@ -310,4 +311,14 @@ hr {
 
 #save-srs {
 	margin-bottom: 30px;
+}
+
+#miner-navbar {
+	background-color: rgba(255, 0, 0, 0);
+
+}
+
+.black-item {
+	color: black !important;
+	font-size: 16px;
 }

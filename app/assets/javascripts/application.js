@@ -18,6 +18,13 @@
 //= require turbolinks
 //= require_tree .
 
+adapt_navbar_color = function() {
+	if (top.location.pathname != "/") {
+		$("#miner-navbar").css("background-color","rgba(255, 255, 255, 1)");
+		$(".miner-menu-item").addClass("black-item");
+	}
+}
+
 loadInfoPhrase = function() {
 	if (top.location.pathname.includes('/articles/')) {
 
@@ -35,6 +42,10 @@ loadInfoPhrase = function() {
 	}
 }
 
+get_translation = function() {
+
+}
+
 change_body_color = function() {
 	if (top.location.pathname.includes('/articles/')) {
 		$("body").css("background-color","#FBFBFB");
@@ -46,4 +57,5 @@ change_body_color = function() {
 $(document).on('turbolinks:load', function(){
 	change_body_color();
 	get_translation();
+	adapt_navbar_color();
 })
