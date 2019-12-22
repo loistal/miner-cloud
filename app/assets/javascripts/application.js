@@ -34,7 +34,24 @@ loadInfoPhrase = function() {
 	        text = window.getSelection().toString();
 
 	        if(text != "") {
-	        	alert(text);
+	        	$(".word-highlighted").text(text);
+
+	        	var data = { 
+	        		key: "AIzaSyAZRIGDoQtbpumlDHk4M4IWvu9TobmtXSM", 
+	        		q: text, 
+	        		target: "en", 
+	        	}
+
+	        	// Ask for the translation using the API key from the Google account
+	        	$.getJSON("https://translation.googleapis.com/language/translate/v2", data)
+					.done(function(data) {
+						console.log(data.data.translations[0].translatedText);
+    					$("#translation").text(data.data.translations[0].translatedText);
+  					})
+  					.fail(function(data) {
+    					alert( "error" );
+    					console.log(data);
+  					});
 	        }
 	    }
 
@@ -42,9 +59,6 @@ loadInfoPhrase = function() {
 	}
 }
 
-get_translation = function() {
-
-}
 
 change_body_color = function() {
 	if (top.location.pathname.includes('/articles/')) {
@@ -56,6 +70,6 @@ change_body_color = function() {
 
 $(document).on('turbolinks:load', function(){
 	change_body_color();
-	get_translation();
+	loadInfoPhrase();
 	adapt_navbar_color();
 })
