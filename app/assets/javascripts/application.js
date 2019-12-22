@@ -55,11 +55,9 @@ adapt_navbar_color = function() {
 	}
 }
 
-loadInfoPhrase = function() {
-	if (top.location.pathname.includes('/articles/')) {
-
-		var text = "";
-		if (window.getSelection) {
+displayInfoSidebar = function() {
+	var text = "";
+	if (window.getSelection) {
 	    	//alert("selection");
 	    	text = window.getSelection().toString();
 
@@ -84,22 +82,54 @@ loadInfoPhrase = function() {
 	        	});
 	        }
 	    }
-
-
 	}
-}
 
 
-change_body_color = function() {
-	if (top.location.pathname.includes('/articles/')) {
-		$("body").css("background-color","#FBFBFB");
-	} else {
-		$("body").css("background-color","#FBFBFB");
+	createCard = function() {
+		if (window.getSelection) {
+	    	//alert("selection");
+	    	text = window.getSelection().toString();
+
+	    	if(text != "") {
+
+	    		var data = { 
+	    			stage: "1", 
+	    			source: text,
+	    			timesreviewed: "0", 
+	    			timessuccess: "0", 
+	    			timesfailed: "0", 
+	    		}
+
+	    		$.post("/createcard", data)
+	        	.done(function(data) {
+	        		console.log("Success");
+	        	})
+	        	.fail(function(data) {
+	        		console.log("Error");
+	        	});
+	    	}
+
+	    }
 	}
-}
 
-$(document).on('turbolinks:load', function(){
-	change_body_color();
-	loadInfoPhrase();
-	adapt_navbar_color();
-})
+	createCardsAndDisplayInfo = function() {
+		if (top.location.pathname.includes('/articles/')) {
+			displayInfoSidebar();
+			createCard();
+		}
+	}
+
+
+	change_body_color = function() {
+		if (top.location.pathname.includes('/articles/')) {
+			$("body").css("background-color","#FBFBFB");
+		} else {
+			$("body").css("background-color","#FBFBFB");
+		}
+	}
+
+	$(document).on('turbolinks:load', function(){
+		change_body_color();
+		createCardsAndDisplayInfo();
+		adapt_navbar_color();
+	})

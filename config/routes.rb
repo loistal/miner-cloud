@@ -17,4 +17,6 @@ Rails.application.routes.draw do
 
 	get 'card', to: 'cards#index'
 
+	post 'createcard', to: 'cards#create'
+
 end

@@ -4,7 +4,7 @@
 			<h2 class="article-title">📚 <%= @article.title %></h2>
 			<p>uploaded by <b>@<%= @article.user.get_username() %></b></p>
 			<div class="article-section">
-				<p onmouseup="loadInfoPhrase()" class="article-text">
+				<p onmouseup="createCardsAndDisplayInfo()" class="article-text">
 					<%= @article.lesson %>
 				</p>
 			</div>

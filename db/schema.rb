@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_20_005646) do
+ActiveRecord::Schema.define(version: 2019_12_22_193941) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -20,6 +20,17 @@ ActiveRecord::Schema.define(version: 2019_12_20_005646) do
     t.string "language"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.string "stage"
+    t.string "source"
+    t.integer "timesreviewed"
+    t.integer "timessuccess"
+    t.integer "timesfailed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
