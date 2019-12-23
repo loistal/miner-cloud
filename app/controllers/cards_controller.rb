@@ -106,6 +106,18 @@ class CardsController < ApplicationController
 		render json: get_next_card()
 	end
 
+	def set_mastered
+		@nextCard = get_next_card()
+
+		# stage 10 is mastery
+		@nextCard.stage = 10
+		@nextCard.timesreviewed += 1
+		@nextCard.timessuccess += 1
+		@nextCard.save
+
+		# return the next card to be displayed
+		render json: get_next_card()
+	end
 
 	private 
 

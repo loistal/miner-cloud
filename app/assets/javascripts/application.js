@@ -18,6 +18,22 @@
 //= require turbolinks
 //= require_tree .
 
+rescheduleCard = function(path) {
+// Create a card
+	var dataCard = { 
+		source: $("#card-answer").text()
+	}
+
+	// reschedule the current card 
+	$.post(path, dataCard)
+	.done(function(nextCardData) {
+		prepareNextCard(nextCardData);
+	})
+	.fail(function(data) {
+
+	});
+}
+
 prepareNextCard = function(nextCardData) {
 
 	$("#answer-button").css("display", "block");
@@ -31,13 +47,7 @@ prepareNextCard = function(nextCardData) {
 
 }
 
-masteredClicked = function() {
-	prepareNextCard();
-}
 
-deleteClicked = function() {
-	prepareNextCard();
-}
 
 displayAnswer = function() {
 	$("#answer-button").css("display", "none");
@@ -47,38 +57,19 @@ displayAnswer = function() {
 }
 
 againClicked = function() {
-
-	// Create a card
-	var dataCard = { 
-		source: $("#card-answer").text()
-	}
-
-	// reschedule the current card 
-	$.post("/reschedule_again", dataCard)
-	.done(function(nextCardData) {
-		prepareNextCard(nextCardData);
-	})
-	.fail(function(data) {
-
-	});
+	rescheduleCard("/reschedule_again");
 }
 
 goodClicked = function() {
+	rescheduleCard("/reschedule_good");
+}
 
-	// Create a card
-	var dataCard = { 
-		source: $("#card-answer").text()
-	}
+masteredClicked = function() {
+	rescheduleCard("/mastered");
+}
 
-	// reschedule the current card 
-	$.post("/reschedule_good", dataCard)
-	.done(function(nextCardData) {
-		console.log(nextCardData);
-		prepareNextCard(nextCardData);
-	})
-	.fail(function(data) {
-
-	});
+deleteClicked = function() {
+	rescheduleCard("/delete_card");
 }
 
 adapt_navbar_color = function() {
