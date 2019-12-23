@@ -119,6 +119,14 @@ class CardsController < ApplicationController
 		render json: get_next_card()
 	end
 
+	def delete_card
+		@nextCard = get_next_card()
+		@nextCard.destroy
+
+		# return the next card to be displayed
+		render json: get_next_card()
+	end
+
 	private 
 
 	def get_next_card

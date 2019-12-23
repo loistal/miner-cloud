@@ -22,5 +22,6 @@ Rails.application.routes.draw do
 	post 'reschedule_good', to: 'cards#reschedule_good'
 	post 'reschedule_again', to: 'cards#reschedule_again'
 	post 'mastered', to: 'cards#set_mastered'
+	post 'delete_card', to: 'cards#delete_card'
 
 end
