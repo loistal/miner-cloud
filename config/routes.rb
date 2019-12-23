@@ -19,4 +19,5 @@ Rails.application.routes.draw do
 
 	post 'createcard', to: 'cards#create'
 
+	post 'reschedule_good', to: 'cards#reschedule_good'
 end

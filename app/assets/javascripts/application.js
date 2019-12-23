@@ -41,10 +41,25 @@ displayAnswer = function() {
 }
 
 againClicked = function() {
+
 	prepareNextCard();
 }
 
 goodClicked = function() {
+
+	// Create a card
+	var dataCard = { 
+		source: $("#card-answer").text()
+	}
+
+	// reschedule the current card 
+	$.post("/reschedule_good", dataCard)
+	.done(function(data) {
+		console.log("Card successfully created");
+	})
+	.fail(function(data) {
+		console.log("Error creating the card");
+	});
 	prepareNextCard();
 }
 
@@ -62,8 +77,11 @@ displayInfoSidebar = function() {
 	    	text = window.getSelection().toString();
 
 	    	if(text != "") {
+
+
 	    		$(".word-highlighted").text(text);
 
+	    		// Data to be sent to google translate
 	    		var data = { 
 	    			key: "AIzaSyAZRIGDoQtbpumlDHk4M4IWvu9TobmtXSM", 
 	    			q: text, 
@@ -71,15 +89,35 @@ displayInfoSidebar = function() {
 	    		}
 
 	        	// Ask for the translation using the API key from the Google account
+	        	translatedText = "";
 	        	$.getJSON("https://translation.googleapis.com/language/translate/v2", data)
 	        	.done(function(data) {
-	        		console.log(data.data.translations[0].translatedText);
-	        		$("#translation").text(data.data.translations[0].translatedText);
+	        		translatedText = data.data.translations[0].translatedText
+	        		$("#translation").text(translatedText);
+
+	        		// Create a card
+	        		var dataCard = { 
+	        			stage: 1, 
+	        			source: text,
+	        			translation: translatedText,
+	        			timesreviewed: "0", 
+	        			timessuccess: "0", 
+	        			timesfailed: "0", 
+	        		}
+
+	        		$.post("/createcard", dataCard)
+	        		.done(function(data) {
+	        			console.log("Card successfully created");
+	        		})
+	        		.fail(function(data) {
+	        			console.log("Error creating the card");
+	        		});
 	        	})
 	        	.fail(function(data) {
 	        		alert( "error" );
-	        		console.log(data);
 	        	});
+
+	        	
 	        }
 	    }
 	}
@@ -92,21 +130,7 @@ displayInfoSidebar = function() {
 
 	    	if(text != "") {
 
-	    		var data = { 
-	    			stage: "1", 
-	    			source: text,
-	    			timesreviewed: "0", 
-	    			timessuccess: "0", 
-	    			timesfailed: "0", 
-	    		}
-
-	    		$.post("/createcard", data)
-	        	.done(function(data) {
-	        		console.log("Success");
-	        	})
-	        	.fail(function(data) {
-	        		console.log("Error");
-	        	});
+	    		
 	    	}
 
 	    }
