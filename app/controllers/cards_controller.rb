@@ -1,7 +1,7 @@
 class CardsController < ApplicationController
 
 	def index
-		
+		@toReview = Card.where("due_on <= ? AND user_id = " + current_user.id.to_s, Time.current)
 	end
 
 	# create a new card
@@ -13,8 +13,10 @@ class CardsController < ApplicationController
 		else
 			@card = Card.new(
 				user_id: current_user.id,
+				due_on: Time.now,
 				stage: params[:stage], 
 				source: params[:source],
+				translation: params[:translation],
 				timesreviewed: params[:timesreviewed].to_i,
 				timessuccess: params[:timessuccess].to_i,
 				timesfailed: params[:timesfailed].to_i,

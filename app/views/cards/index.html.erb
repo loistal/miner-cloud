@@ -3,8 +3,8 @@
 		<div class="col-md-8 miner-container">
 
 			<div id="card-content">
-				<p id="word-recall" align="center" class="card-text">Problem</p>
-				<p id="card-answer" align="center" class="card-text">問題 <a href="">🔈</a></p>		
+				<p id="word-recall" align="center" class="card-text"><%= @toReview.first.translation %></p>
+				<p id="card-answer" align="center" class="card-text"><%= @toReview.first.source %> <a href="">🔈</a></p>		
 			</div>
 
 		</div>
@@ -25,8 +25,14 @@
 					<button type="button" class="btn btn-primary miner-button full-width">Good</button>
 				</div>
 			</div>	
-
-			<b>Card statistics 📊</b>
+			<b>Deck statistics 📈</b>
+			<ul id="list-statistics">
+				<li><b>450</b> cards total</li>
+				<li><b>230</b> cards mastered 🎓</li>
+				<li><b>20</b> cards in long-term memory 🧠</li>
+				<li><b>200</b> cards in short-term memory 🐣</li>
+			</ul>
+			<b>This card 📊</b>
 			<ul id="list-statistics">
 				<li>Long-term memory 🧠</li>
 				<li>Reviewed <b>8</b> times</li>

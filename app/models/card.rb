@@ -1,6 +1,7 @@
 class Card < ApplicationRecord
 	belongs_to :user
 	validates :source, presence: true
+	validates :due_on, presence: true
 	validates :stage, presence: true
 	validates :timesreviewed, presence: true
 	validates :timessuccess, presence: true
