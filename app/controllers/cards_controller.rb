@@ -47,13 +47,13 @@ class CardsController < ApplicationController
 		when 1
 			@nextCard.due_on = Time.now + 1.days
 		when 2
-			@nextCard.due_on = Date.now + 2.days
+			@nextCard.due_on = Time.now + 2.days
 		when 3
-			@nextCard.due_on = Date.now + 4.days
+			@nextCard.due_on = Time.now + 4.days
 		when 4
-			@nextCard.due_on = Date.now + 1.weeks
+			@nextCard.due_on = Time.now + 1.weeks
 		when 5
-			@nextCard.due_on = Date.now + 2.weeks
+			@nextCard.due_on = Time.now + 2.weeks
 		when 6
 			@nextCard.due_on = Date.now + 1.months
 		when 7
@@ -76,13 +76,16 @@ class CardsController < ApplicationController
 		@nextCard.timessuccess += 1
 
 		@nextCard.save
+
+		# return the next card to be displayed
+		render json: get_next_card()
 	end
 
 
 	private 
 
 	def get_next_card
-		return Card.where("due_on <= ? AND user_id = " + current_user.id.to_s, Time.current).first
+		return Card.where("due_on <= ? AND stage != 10 AND user_id = " + current_user.id.to_s, Time.current).first
 	end
 
 end

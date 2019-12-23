@@ -18,11 +18,17 @@
 //= require turbolinks
 //= require_tree .
 
-prepareNextCard = function() {
+prepareNextCard = function(nextCardData) {
+
 	$("#answer-button").css("display", "block");
 	$("#again-button").css("display", "none");
 	$("#good-button").css("display", "none");
 	$("#card-answer").css("display", "none");
+
+	// Display next card's fields
+	$("#word-recall").text(nextCardData.translation);
+	$("#card-answer").text(nextCardData.source);
+
 }
 
 masteredClicked = function() {
@@ -54,13 +60,13 @@ goodClicked = function() {
 
 	// reschedule the current card 
 	$.post("/reschedule_good", dataCard)
-	.done(function(data) {
-		console.log("Card successfully created");
+	.done(function(nextCardData) {
+		console.log(nextCardData);
+		prepareNextCard(nextCardData);
 	})
 	.fail(function(data) {
-		console.log("Error creating the card");
+
 	});
-	prepareNextCard();
 }
 
 adapt_navbar_color = function() {

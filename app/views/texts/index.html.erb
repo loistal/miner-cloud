@@ -64,7 +64,7 @@
 
 				<% if @articles.count == 0 %>
 
-				We don't have any <b class="highlighted"><%= difficulty_to_string(params[:difficulty].to_i) %></b> articles in <b class="highlighted"><%= params[:language].capitalize %></b>. 
+				We don't have any <b class="highlighted"><%= difficulty_to_string(params[:difficulty].to_i) %></b> articles in <b class="highlighted"><%= params[:language] %></b>. 
 				<a href="#" class="link-miner" data-toggle="modal" data-target="#uploadArticleModal">
 						Create one now.
 					</a>
