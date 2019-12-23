@@ -34,10 +34,10 @@
 			</ul>
 			<b>This card 📊</b>
 			<ul id="list-statistics">
-				<li id="memory-stage">Loading 😅</li>
-				<li>Reviewed <b>8</b> times</li>
-				<li>Successful recalls: <b>7</b></li>
-				<li>Failed recalls: <b>1</b></li>
+				<li id="memory-stage">Stage <%= @nextCard.stage %></li>
+				<li>Reviewed <b id="times-reviewed"><%= @nextCard.timesreviewed %></b> times</li>
+				<li>Successful recalls: <b id="successful-recalls"><%= @nextCard.timessuccess %></b></li>
+				<li>Failed recalls: <b id="failed-recalls"><%= @nextCard.timesfailed %></b></li>
 			</ul>
 
 			<p onClick="masteredClicked()" class="link-miner">Mark as mastered 🚀</p>

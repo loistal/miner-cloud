@@ -58,6 +58,9 @@ prepareNextCard = function(nextCardData) {
 	$("#word-recall").text(nextCardData.translation);
 	$("#card-answer").text(nextCardData.source);
 	$("#memory-stage").text(get_memory_stage(nextCardData.stage));
+	$("#times-reviewed").text(nextCardData.timesreviewed);
+	$("#successful-recalls").text(nextCardData.timessuccess);
+	$("#failed-recalls").text(nextCardData.timesfailed);	
 
 }
 
