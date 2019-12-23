@@ -55,13 +55,13 @@ class CardsController < ApplicationController
 		when 5
 			@nextCard.due_on = Time.now + 2.weeks
 		when 6
-			@nextCard.due_on = Date.now + 1.months
+			@nextCard.due_on = Time.now + 1.months
 		when 7
-			@nextCard.due_on = Date.now + 2.months
+			@nextCard.due_on = Time.now + 2.months
 		when 8
-			@nextCard.due_on = Date.now + 4.months
+			@nextCard.due_on = Time.now + 4.months
 		when 9
-			@nextCard.due_on = Date.now + 8.months # card is mastered
+			@nextCard.due_on = Time.now + 8.months # card is mastered
 		else
 			puts "Stage not recognized"
 		end

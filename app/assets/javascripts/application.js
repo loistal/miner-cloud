@@ -20,9 +20,9 @@
 
 rescheduleCard = function(path) {
 // Create a card
-	var dataCard = { 
-		source: $("#card-answer").text()
-	}
+var dataCard = { 
+	source: $("#card-answer").text()
+}
 
 	// reschedule the current card 
 	$.post(path, dataCard)
@@ -34,6 +34,18 @@ rescheduleCard = function(path) {
 	});
 }
 
+get_memory_stage = function(stage) {
+	if(stage <= 7) {
+		return "Short-term memory 🏋️‍♀️";
+	} else if (stage > 7 && stage <= 9) {
+		return "Long-term memory 🧠";
+	} else if (stage == 10) {
+		return "Mastered 🎓";
+	} else {
+		return "Unknow stage 🤔";
+	}
+}
+
 prepareNextCard = function(nextCardData) {
 
 	$("#answer-button").css("display", "block");
@@ -42,8 +54,10 @@ prepareNextCard = function(nextCardData) {
 	$("#card-answer").css("display", "none");
 
 	// Display next card's fields
+	console.log(nextCardData);
 	$("#word-recall").text(nextCardData.translation);
 	$("#card-answer").text(nextCardData.source);
+	$("#memory-stage").text(get_memory_stage(nextCardData.stage));
 
 }
 

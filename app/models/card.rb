@@ -6,4 +6,5 @@ class Card < ApplicationRecord
 	validates :timesreviewed, presence: true
 	validates :timessuccess, presence: true
 	validates :timesfailed, presence: true
+
 end
