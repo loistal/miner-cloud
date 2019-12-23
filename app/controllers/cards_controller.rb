@@ -1,9 +1,12 @@
 class CardsController < ApplicationController
 
 	def index
-		# the next
 		@nextCard = get_next_card()
-
+		
+		@totalNumberCards = Card.all.count
+		@masteredCards = Card.where(stage: 10).count
+		@longTermMemCards = Card.where("stage >= 8 AND stage < 10").count
+		@shortTermMemCards = Card.where("stage < 8 AND stage >= 1").count
 	end
 
 	# create a new card

@@ -54,7 +54,6 @@ prepareNextCard = function(nextCardData) {
 	$("#card-answer").css("display", "none");
 
 	// Display next card's fields
-	console.log(nextCardData);
 	$("#word-recall").text(nextCardData.translation);
 	$("#card-answer").text(nextCardData.source);
 	$("#memory-stage").text(get_memory_stage(nextCardData.stage));
