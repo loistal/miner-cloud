@@ -81,6 +81,31 @@ class CardsController < ApplicationController
 		render json: get_next_card()
 	end
 
+	def reschedule_again
+		@nextCard = get_next_card()
+
+		if(@nextCard.stage == nil) 
+			@nextCard.stage = 1
+		end
+
+		# no matter what stage the card is in, it should be reveiewed the following day
+		@nextCard.due_on = Time.now + 1.days
+
+		if(@nextCard.stage != 1) 
+			# we go back 1 stage upon failing the card
+			@nextCard.stage -= 1
+		end
+
+
+		@nextCard.timesreviewed += 1
+		@nextCard.timesfailed += 1
+
+		@nextCard.save
+
+		# return the next card to be displayed
+		render json: get_next_card()
+	end
+
 
 	private 
 

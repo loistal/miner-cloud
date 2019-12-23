@@ -48,7 +48,19 @@ displayAnswer = function() {
 
 againClicked = function() {
 
-	prepareNextCard();
+	// Create a card
+	var dataCard = { 
+		source: $("#card-answer").text()
+	}
+
+	// reschedule the current card 
+	$.post("/reschedule_again", dataCard)
+	.done(function(nextCardData) {
+		prepareNextCard(nextCardData);
+	})
+	.fail(function(data) {
+
+	});
 }
 
 goodClicked = function() {
