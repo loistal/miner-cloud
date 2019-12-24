@@ -3,14 +3,21 @@
 		<div class="col-md-8 miner-container">
 			<h2 onmouseup="createCardsAndDisplayInfo()" class="article-title"><%= @article.icon %> <%= @article.title %></h2>
 			<p>uploaded by <b>@<%= @article.user.get_username() %></b> <%= time_ago_in_words(@article.created_at) %></p>
-			<div class="article-section">
-				<%= sanitize @article.lesson %>
-				
-				<!--
-				<p onmouseup="createCardsAndDisplayInfo()" class="article-text">
-					<%= @article.lesson %>
-				</p> -->
+
+			<div class="row">
+				<div id="lesson-go-back" class="col-md-1">
+					<p class="arrow-lesson">◀</p>
+				</div>
+				<div class="col-md-10">
+					<div class="article-section">
+						<%= sanitize @article.lesson %>
+					</div>
+				</div>
+				<div id="lesson-go-forward" class="col-md-1">
+					<p class="arrow-lesson">▶</p>
+				</div>
 			</div>
+			
 		</div>
 		
 		<div class="col-md-1"></div>
