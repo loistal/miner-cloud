@@ -155,6 +155,10 @@ hr {
 	background-color: #FFFC55;
 }
 
+.word-selected {
+	background-color: rgba(255, 71, 66, 30);
+}	
+
 .form-control {
 	margin: 10px 0;
 }
@@ -277,7 +281,8 @@ hr {
 }
 
 .article-section {
-	
+	font-size: 1.2em;
+	line-height: 35px;
 }
 
 .article-text {
@@ -371,4 +376,16 @@ hr {
 
 #card-answer {
 	display: none;
+}
+
+.lesson-word {
+	background-color: #AEE0F4;	
+	margin: 2px;
+	border-radius: 5px;
+	padding: 1px;
+}
+
+.lesson-word:hover {
+	cursor: pointer;
+	background-color: #DAEAF0;	
 }

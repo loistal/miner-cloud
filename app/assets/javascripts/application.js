@@ -217,21 +217,30 @@
  }
  ];
 
-languagesInfo = {
-	"spanish" : "es-MX",
-	"french" : "fr-FR",
-	"japanese" : "ja-JP",
-	"chinese" : "zh-TW",
-	"korean" : "ko-KR",
-	"german" : "de-DE",
-	"italian" : "it-IT",
-	"russian" : "ru-RU",
-	"portuguese" : "pt-BR",
-	"hindi" : "hi-IN",
-	"dutch" : "nl-NL",
-	"turkish" : "tr-TR",
-	"polish" : "pl-PL"
-}
+ languagesInfo = {
+ 	"spanish" : "es-MX",
+ 	"french" : "fr-FR",
+ 	"japanese" : "ja-JP",
+ 	"chinese" : "zh-TW",
+ 	"korean" : "ko-KR",
+ 	"german" : "de-DE",
+ 	"italian" : "it-IT",
+ 	"russian" : "ru-RU",
+ 	"portuguese" : "pt-BR",
+ 	"hindi" : "hi-IN",
+ 	"dutch" : "nl-NL",
+ 	"turkish" : "tr-TR",
+ 	"polish" : "pl-PL"
+ }
+
+ hover_word = function () {
+ 	$(".lesson-word").onClick(
+ 		function(){
+ 			$(this).addClass("word-clicked");		
+ 		}
+ 	)
+
+ }
 
  pronounce = function (){
  	var msg = new SpeechSynthesisUtterance();
@@ -240,14 +249,14 @@ languagesInfo = {
  	msg.pitch = 1;
  	msg.text = $("#word-selected").text();
 
-	var artLang = $("#article-language").text().toLowerCase();
+ 	var artLang = $("#article-language").text().toLowerCase();
 
-	msg.lang = languagesInfo[artLang];
-	console.log(languagesInfo[artLang]);
-	speechSynthesis.speak(msg);
-}
+ 	msg.lang = languagesInfo[artLang];
+ 	console.log(languagesInfo[artLang]);
+ 	speechSynthesis.speak(msg);
+ }
 
-rescheduleCard = function(path) {
+ rescheduleCard = function(path) {
 // Create a card
 var dataCard = { 
 	source: $("#card-answer").text()
@@ -410,4 +419,5 @@ displayInfoSidebar = function() {
 		change_body_color();
 		createCardsAndDisplayInfo();
 		adapt_navbar_color();
+		hover_word();
 	})
