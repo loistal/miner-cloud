@@ -3,5 +3,5 @@ class Article < ApplicationRecord
 	validates :title, presence: true
 	validates :difficulty, presence: true
 	validates :language, presence: true
-	validates :lesson, presence: true, length: { minimum: 100, maximum: 2000 }
+	validates :lesson, presence: true, length: { minimum: 100 }
 end

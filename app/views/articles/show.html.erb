@@ -1,8 +1,8 @@
 <div class="container">
 	<div id="row-article" class="row">
 		<div class="col-md-8 miner-container">
-			<h2 class="article-title">📚 <%= @article.title %></h2>
-			<p>uploaded by <b>@<%= @article.user.get_username() %></b></p>
+			<h2 onmouseup="createCardsAndDisplayInfo()" class="article-title"><%= @article.icon %> <%= @article.title %></h2>
+			<p>uploaded by <b>@<%= @article.user.get_username() %></b> <%= time_ago_in_words(@article.created_at) %></p>
 			<div class="article-section">
 				<p onmouseup="createCardsAndDisplayInfo()" class="article-text">
 					<%= @article.lesson %>
@@ -12,6 +12,17 @@
 		
 		<div class="col-md-1"></div>
 
-		<%= render 'articles/sidebar' %>
+		<div class="col-md-3 miner-container">
+			<b id="article-language"><%= @article.language.capitalize %></b>
+			<p id="word-selected" align="center" class="word-highlighted">Select a word in the text</p>
+
+			<p id="link-pronunciation" onClick="pronounce()"><a href="#" class="link-miner">Pronunciation 🔈</a></p>
+
+			<b>Translation 🌎</b>
+			<p id="translation">
+				The translation will be displayed here
+			</p>
+
+		</div>
 	</div>
 </div>

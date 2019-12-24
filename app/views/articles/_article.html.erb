@@ -1,7 +1,7 @@
-<a class="row-text-link" href="#">
+<a class="row-text-link" href="/articles/<%= article.id %>">
 	<div class="row row-text">
 		<div class="col-md-2">
-			<p class="text-icon" align="center">🚀</p>
+			<p class="text-icon" align="center"><%= article.icon %></p>
 		</div>	
 		<div class="col-md-8">
 			<p>uploaded by <b>@<%= article.user.get_username() %></b></p>
@@ -9,7 +9,7 @@
 			<div><%= article.difficulty %></div>
 		</div>
 		<div class="col-md-2">
-			📎 <%= article.created_at %>
+			📎 <%= time_ago_in_words(article.created_at) %> ago
 		</div>
 	</div>
 </a>

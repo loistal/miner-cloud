@@ -283,7 +283,8 @@ hr {
 .article-text {
 	font-size: 1.5em;
 	height: 350px;
-	overflow: auto;
+	width: 100%;
+	overflow-y: auto;
 }
 
 .article-title  {
