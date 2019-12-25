@@ -104,15 +104,6 @@ format_lesson = function() {
 
 }
 
-hover_word = function () {
-	//$(".lesson-word").onClick(
-	//	function(){
-	//		$(this).addClass("word-clicked");		
-	//	}
-	//)
-
-}
-
 pronounce = function (){
 	languagesInfo = {
 		"spanish" : "es-MX",
@@ -139,7 +130,6 @@ pronounce = function (){
 	var artLang = $("#article-language").text().toLowerCase();
 
 	msg.lang = languagesInfo[artLang];
-	console.log(languagesInfo[artLang]);
 	speechSynthesis.speak(msg);
 }
 
@@ -220,94 +210,68 @@ adapt_navbar_color = function() {
 	}
 }
 
-displayInfoSidebar = function() {
-	var text = "";
-	if (window.getSelection) {
-	    	//alert("selection");
-	    	text = window.getSelection().toString();
-
-	    	if(text != "") {
-
-
-	    		$(".word-highlighted").text(text);
-
-	    		// Data to be sent to google translate
-	    		var data = { 
-	    			key: "AIzaSyAZRIGDoQtbpumlDHk4M4IWvu9TobmtXSM", 
-	    			q: text, 
-	    			target: "en", 
-	    		}
-
-	        	// Ask for the translation using the API key from the Google account
-	        	translatedText = "";
-	        	$.getJSON("https://translation.googleapis.com/language/translate/v2", data)
-	        	.done(function(data) {
-	        		translatedText = data.data.translations[0].translatedText
-	        		$("#translation").text(translatedText);
-
-	        		// Create a card
-	        		var dataCard = { 
-	        			stage: 1, 
-	        			source: text,
-	        			translation: translatedText,
-	        			timesreviewed: "0", 
-	        			timessuccess: "0", 
-	        			timesfailed: "0", 
-	        		}
-
-	        		$.post("/createcard", dataCard)
-	        		.done(function(data) {
-	        			console.log("Card successfully created");
-	        		})
-	        		.fail(function(data) {
-	        			console.log("Error creating the card");
-	        		});
-	        	})
-	        	.fail(function(data) {
-	        		alert( "error" );
-	        	});
-
-	        	
-	        }
-	    }
-	}
-
-
-	createCard = function() {
-		if (window.getSelection) {
-	    	//alert("selection");
-	    	text = window.getSelection().toString();
-
-	    	if(text != "") {
-
-	    		
-	    	}
-
-	    }
-	}
-
-	createCardsAndDisplayInfo = function() {
+// Must be called after the pages have been created
+createCardsAndDisplayInfo = function() {
+	$("span.lesson-word").mousedown(function() {
 		if (top.location.pathname.includes('/articles/')) {
-			displayInfoSidebar();
-			createCard();
+			var text = $(this).text();
+
+			$(".word-highlighted").text(text);
+
+			// Data to be sent to google translate
+			var data = { 
+				key: "AIzaSyAZRIGDoQtbpumlDHk4M4IWvu9TobmtXSM", 
+				q: text, 
+				target: "en", 
+			}
+
+			// Ask for the translation using the API key from the Google account
+			translatedText = "";
+			$.getJSON("https://translation.googleapis.com/language/translate/v2", data)
+			.done(function(data) {
+				translatedText = data.data.translations[0].translatedText
+				$("#translation").text(translatedText);
+
+				// Create a card
+				var dataCard = { 
+					stage: 1, 
+					source: text,
+					translation: translatedText,
+					timesreviewed: "0", 
+					timessuccess: "0", 
+					timesfailed: "0", 
+				}
+
+				$.post("/createcard", dataCard)
+				.done(function(data) {
+					console.log("Card successfully created");
+				})
+				.fail(function(data) {
+					console.log("Error creating the card");
+				});
+			})
+			.fail(function(data) {
+				alert( "error" );
+			});
 		}
+	});
+}
+
+
+change_body_color = function() {
+	if (top.location.pathname.includes('/articles/')) {
+		$("body").css("background-color","#FBFBFB");
+	} else {
+		$("body").css("background-color","#FBFBFB");
 	}
+}
 
+$(document).on('turbolinks:load', function(){
+	format_lesson();
+	change_body_color();
+	adapt_navbar_color();
 
-	change_body_color = function() {
-		if (top.location.pathname.includes('/articles/')) {
-			$("body").css("background-color","#FBFBFB");
-		} else {
-			$("body").css("background-color","#FBFBFB");
-		}
-	}
-
-	$(document).on('turbolinks:load', function(){
-		format_lesson();
-		change_body_color();
-		createCardsAndDisplayInfo();
-		adapt_navbar_color();
-		hover_word();
-		goToPage(1);
-		refreshArrows();
-	})
+	goToPage(1);
+	createCardsAndDisplayInfo(); 
+	refreshArrows();
+})
