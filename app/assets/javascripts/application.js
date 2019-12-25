@@ -18,245 +18,132 @@
 //= require turbolinks
 //= require_tree .
 
-/**
- * @author Phil Teare
- * using wikipedia data
- */
- /**
- * @author Phil Teare
- * using wikipedia data
- */
- speaks = [
- {
- 	"name": "Alex",
- 	"lang": "en-US"
- },
- {
- 	"name": "Alice",
- 	"lang": "it-IT"
- },
- {
- 	"name": "Alva",
- 	"lang": "sv-SE"
- },
- {
- 	"name": "Amelie",
- 	"lang": "fr-CA"
- },
- {
- 	"name": "Anna",
- 	"lang": "de-DE"
- },
- {
- 	"name": "Carmit",
- 	"lang": "he-IL"
- },
- {
- 	"name": "Damayanti",
- 	"lang": "id-ID"
- },
- {
- 	"name": "Daniel",
- 	"lang": "en-GB"
- },
- {
- 	"name": "Diego",
- 	"lang": "es-AR"
- },
- {
- 	"name": "Ellen",
- 	"lang": "nl-BE"
- },
- {
- 	"name": "Fiona",
- 	"lang": "en"
- },
- {
- 	"name": "Fred",
- 	"lang": "en-US"
- },
- {
- 	"name": "Ioana",
- 	"lang": "ro-RO"
- },
- {
- 	"name": "Joana",
- 	"lang": "pt-PT"
- },
- {
- 	"name": "Jorge",
- 	"lang": "es-ES"
- },
- {
- 	"name": "Juan",
- 	"lang": "es-MX"
- },
- {
- 	"name": "Kanya",
- 	"lang": "th-TH"
- },
- {
- 	"name": "Karen",
- 	"lang": "en-AU"
- },
- {
- 	"name": "Kyoko",
- 	"lang": "ja-JP"
- },
- {
- 	"name": "Laura",
- 	"lang": "sk-SK"
- },
- {
- 	"name": "Lekha",
- 	"lang": "hi-IN"
- },
- {
- 	"name": "Luca",
- 	"lang": "it-IT"
- },
- {
- 	"name": "Luciana",
- 	"lang": "pt-BR"
- },
- {
- 	"name": "Maged",
- 	"lang": "ar-SA"
- },
- {
- 	"name": "Mariska",
- 	"lang": "hu-HU"
- },
- {
- 	"name": "Mei-Jia",
- 	"lang": "zh-TW"
- },
- {
- 	"name": "Melina",
- 	"lang": "el-GR"
- },
- {
- 	"name": "Milena",
- 	"lang": "ru-RU"
- },
- {
- 	"name": "Moira",
- 	"lang": "en-IE"
- },
- {
- 	"name": "Monica",
- 	"lang": "es-ES"
- },
- {
- 	"name": "Nora",
- 	"lang": "nb-NO"
- },
- {
- 	"name": "Paulina",
- 	"lang": "es-MX"
- },
- {
- 	"name": "Samantha",
- 	"lang": "en-US"
- },
- {
- 	"name": "Sara",
- 	"lang": "da-DK"
- },
- {
- 	"name": "Satu",
- 	"lang": "fi-FI"
- },
- {
- 	"name": "Sin-ji",
- 	"lang": "zh-HK"
- },
- {
- 	"name": "Tessa",
- 	"lang": "en-ZA"
- },
- {
- 	"name": "Thomas",
- 	"lang": "fr-FR"
- },
- {
- 	"name": "Ting-Ting",
- 	"lang": "zh-CN"
- },
- {
- 	"name": "Veena",
- 	"lang": "en-IN"
- },
- {
- 	"name": "Victoria",
- 	"lang": "en-US"
- },
- {
- 	"name": "Xander",
- 	"lang": "nl-NL"
- },
- {
- 	"name": "Yelda",
- 	"lang": "tr-TR"
- },
- {
- 	"name": "Yuna",
- 	"lang": "ko-KR"
- },
- {
- 	"name": "Yuri",
- 	"lang": "ru-RU"
- },
- {
- 	"name": "Zosia",
- 	"lang": "pl-PL"
- },
- {
- 	"name": "Zuzana",
- 	"lang": "cs-CZ"
- }
- ];
+refreshArrows = function() {
+	if(parseInt($("#page-number").text()) == 1) {
+		$("#lesson-go-back").css("display", "none");
+	} else {
+		$("#lesson-go-back").css("display", "block");
+	}
+}
 
- languagesInfo = {
- 	"spanish" : "es-MX",
- 	"french" : "fr-FR",
- 	"japanese" : "ja-JP",
- 	"chinese" : "zh-TW",
- 	"korean" : "ko-KR",
- 	"german" : "de-DE",
- 	"italian" : "it-IT",
- 	"russian" : "ru-RU",
- 	"portuguese" : "pt-BR",
- 	"hindi" : "hi-IN",
- 	"dutch" : "nl-NL",
- 	"turkish" : "tr-TR",
- 	"polish" : "pl-PL"
- }
+goToPage = function(page_to_display) {
+	var lesson_text = $("#full-lesson").text();
 
- hover_word = function () {
- 	$(".lesson-word").onClick(
- 		function(){
- 			$(this).addClass("word-clicked");		
- 		}
- 	)
+	var words_array = lesson_text.split(" ");
 
- }
+	// Break up the lesson in pages of 370 characters max 
+	var max_character_page = 50;
+	var number_of_pages = Math.ceil(words_array.length / max_character_page);
 
- pronounce = function (){
- 	var msg = new SpeechSynthesisUtterance();
- 	msg.volume = 1;
- 	msg.rate = 1;
- 	msg.pitch = 1;
- 	msg.text = $("#word-selected").text();
+	var starting_character = (page_to_display - 1) * max_character_page
+	var page_words = words_array.slice(starting_character, starting_character + max_character_page);
 
- 	var artLang = $("#article-language").text().toLowerCase();
+	// create a separate span for each word 
+	var page_text = "";
+	var characters_per_line = 48;
 
- 	msg.lang = languagesInfo[artLang];
- 	console.log(languagesInfo[artLang]);
- 	speechSynthesis.speak(msg);
- }
+	// keep track of the number of characters for the current line
+	var current_characters = 0;  
+	for(var i = 0; i < page_words.length; i++) {
+		page_text += '<span class="lesson-word">' + page_words[i] + '</span>';
+		current_characters += page_words[i].length;
 
- rescheduleCard = function(path) {
+		if(i < page_words.length - 1) {
+			var next_word_length = page_words[i+1].length
+
+			if(current_characters + next_word_length >= characters_per_line) {
+				page_text += "<br>"
+
+				// reset (we start counting for the next line)
+				current_characters = 0;
+			} 
+		}
+	}
+
+	$(".article-section").prepend(page_text);
+}
+
+
+previousPage = function() {
+	$(".article-section").empty();
+	var page_number = parseInt($("#page-number").text());
+	var page_to_display = page_number - 1;
+	page_to_display = page_to_display;
+	goToPage(page_to_display);
+
+	// update page number
+	$("#page-number").text(page_to_display);
+	refreshArrows();
+}
+
+nextPage = function() {
+	$(".article-section").empty();
+	var page_number = parseInt($("#page-number").text());
+	var page_to_display = page_number + 1;
+	page_to_display = page_to_display;
+	goToPage(page_to_display);
+
+	// update page number
+	$("#page-number").text(page_to_display);
+	refreshArrows();
+}
+
+format_lesson = function() {
+	var lesson_text = $(".article-section").text();
+
+	var words_array = lesson_text.split(" ");
+
+	// Break up the lesson in pages of 370 characters max 
+	var number_of_pages = Math.ceil(words_array.length / 370);
+
+	var all_pages = [];
+	for(var i = 0; i < number_of_pages; i++) {
+		var single_page = words_array.slice(i * 370, i + 370);
+		all_pages.push(single_page);
+	}
+
+}
+
+hover_word = function () {
+	//$(".lesson-word").onClick(
+	//	function(){
+	//		$(this).addClass("word-clicked");		
+	//	}
+	//)
+
+}
+
+pronounce = function (){
+	languagesInfo = {
+		"spanish" : "es-MX",
+		"french" : "fr-FR",
+		"japanese" : "ja-JP",
+		"chinese" : "zh-TW",
+		"korean" : "ko-KR",
+		"german" : "de-DE",
+		"italian" : "it-IT",
+		"russian" : "ru-RU",
+		"portuguese" : "pt-BR",
+		"hindi" : "hi-IN",
+		"dutch" : "nl-NL",
+		"turkish" : "tr-TR",
+		"polish" : "pl-PL"
+	}
+
+	var msg = new SpeechSynthesisUtterance();
+	msg.volume = 1;
+	msg.rate = 1;
+	msg.pitch = 1;
+	msg.text = $("#word-selected").text();
+
+	var artLang = $("#article-language").text().toLowerCase();
+
+	msg.lang = languagesInfo[artLang];
+	console.log(languagesInfo[artLang]);
+	speechSynthesis.speak(msg);
+}
+
+rescheduleCard = function(path) {
 // Create a card
 var dataCard = { 
 	source: $("#card-answer").text()
@@ -416,8 +303,11 @@ displayInfoSidebar = function() {
 	}
 
 	$(document).on('turbolinks:load', function(){
+		format_lesson();
 		change_body_color();
 		createCardsAndDisplayInfo();
 		adapt_navbar_color();
 		hover_word();
+		goToPage(1);
+		refreshArrows();
 	})

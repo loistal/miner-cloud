@@ -5,17 +5,22 @@
 			<p>uploaded by <b>@<%= @article.user.get_username() %></b> <%= time_ago_in_words(@article.created_at) %></p>
 
 			<div class="row">
-				<div id="lesson-go-back" class="col-md-1">
+				<div onClick="previousPage()" id="lesson-go-back" class="col-md-1">
 					<p class="arrow-lesson">◀</p>
 				</div>
 				<div class="col-md-10">
 					<div class="article-section">
-						<%= sanitize @article.lesson %>
 					</div>
 				</div>
-				<div id="lesson-go-forward" class="col-md-1">
+				<div onClick="nextPage()" id="lesson-go-forward" class="col-md-1">
 					<p class="arrow-lesson">▶</p>
 				</div>
+			</div>
+
+			<p align="center">page <span id="page-number">1</span></p>
+
+			<div style="display: none;" id="full-lesson">
+				<%= @article.lesson %>
 			</div>
 			
 		</div>

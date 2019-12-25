@@ -282,7 +282,9 @@ hr {
 
 .article-section {
 	font-size: 1.2em;
-	line-height: 35px;
+	line-height: 50px;
+	width: 100%;
+	overflow-wrap: break-word;
 }
 
 .article-text {
@@ -390,12 +392,12 @@ hr {
 }
 
 #lesson-go-back, #lesson-go-forward  {
-	background-color: #F5F5F5;
+	
 	border-radius: 5px;
 }
 
 #lesson-go-back:hover, #lesson-go-forward:hover {
-	background-color: #EAEAEA;
+	background-color: #F5F5F5;
 	cursor: pointer;
 }
 

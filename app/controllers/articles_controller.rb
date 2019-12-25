@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
 		@article = Article.new(difficulty: params[:difficulty], 
 			user_id: current_user.id, 
 			language: params[:language], 
-			lesson: create_lesson(params[:article][:lesson]), 
+			lesson: params[:article][:lesson], 
 			title: params[:article][:title],
 			icon: generate_random_icon())
 
@@ -30,20 +30,6 @@ class ArticlesController < ApplicationController
 
 	def article_params 
 		params.require(:article).permit(:title, :difficulty, :language, :lesson, :user)
-	end
-
-	# inserts the html necessary inside the text to create a lesson
-	# that can be displayed correctly.
-	def create_lesson(lesson_text)
-		@words = lesson_text.split(" ")
-
-		@finalLesson = ""
-
-		@words.each do |word|
-			@finalLesson += '<span class="lesson-word">' + word + ' </span>'
-		end
-
-		return @finalLesson;
 	end
 
 	def generate_random_icon
