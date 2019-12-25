@@ -61,6 +61,8 @@ goToPage = function(page_to_display) {
 	}
 
 	$(".article-section").prepend(page_text);
+
+	addTranslationListener();
 }
 
 
@@ -211,7 +213,7 @@ adapt_navbar_color = function() {
 }
 
 // Must be called after the pages have been created
-createCardsAndDisplayInfo = function() {
+addTranslationListener = function() {
 	$("span.lesson-word").mousedown(function() {
 		if (top.location.pathname.includes('/articles/')) {
 			var text = $(this).text();
@@ -272,6 +274,5 @@ $(document).on('turbolinks:load', function(){
 	adapt_navbar_color();
 
 	goToPage(1);
-	createCardsAndDisplayInfo(); 
 	refreshArrows();
 })
