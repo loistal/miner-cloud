@@ -24,4 +24,6 @@ Rails.application.routes.draw do
 	post 'mastered', to: 'cards#set_mastered'
 	post 'delete_card', to: 'cards#delete_card'
 
+	post 'delete-last-card', to: 'cards#delete_last_card'
+
 end

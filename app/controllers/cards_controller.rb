@@ -38,6 +38,11 @@ class CardsController < ApplicationController
 
 	end	
 
+	def delete_last_card
+		@last_card = Card.where(user_id: current_user.id).last 
+		@last_card.destroy
+	end
+
 	def reschedule_good
 		@nextCard = get_next_card()
 

@@ -213,22 +213,6 @@ adapt_navbar_color = function() {
 	}
 }
 
-onlyOneWordSelected = function() {
-	if (window.getSelection) {
-		var selection = window.getSelection();
-		if (selection.rangeCount > 0) {
-			range = selection.getRangeAt(0);
-			var firstWordSelectedId = range.startContainer.parentNode.id;
-			var lastWordSelectedId = range.endContainer.parentNode.id;
-
-			return firstWordSelectedId == lastWordSelectedId;
-		} 
-
-	} else {
-		return true;
-	}
-}
-
 // Must be called after the pages have been created
 addTranslationListener = function() {
 	$("span.lesson-word").mouseup(function() {
@@ -250,9 +234,24 @@ addTranslationListener = function() {
 				var lastWordSelectedIndex = lastWordSelected.id.slice(5, 7).match(/\d+/)[0];
 				var currentWordIndex = $(this)[0].id.slice(5, 7).match(/\d+/)[0];
 
+				// the words selected are not next to each other
 				if(currentWordIndex - lastWordSelectedIndex != 1) {
 					selectedWords.removeClass("user-selection");
+				} else {
+					// the words selected form a phrase => we need to
+					// delete the last card created since we will replaced
+					// it with a new phrase card
+					$.post("/delete-last-card")
+					.done(function(data) {
+
+					})
+					.fail(function(data) {
+
+					});
+
 				}
+
+
 			}
 
 			$(this).addClass("user-selection");
