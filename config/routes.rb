@@ -26,4 +26,5 @@ Rails.application.routes.draw do
 
 	post 'delete-last-card', to: 'cards#delete_last_card'
 
+	get 'account', to: 'users#account'
 end
