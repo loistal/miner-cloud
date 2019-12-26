@@ -18,42 +18,6 @@
 //= require turbolinks
 //= require_tree .
 
-addPhraseListener = function(pageNumber, numberOfWords) {
-	// if start selecting a word, then make sure the whole word is selected
-	// even if the user starts the selection in the middle
-
-	var down = false;
-	$(document).mousedown(function() {
-	    down = true;
-	}).mouseup(function() {
-	    down = false;  
-	});
-
-	$("#row-article").click(function() {
-		$(".lesson-word").removeClass("phraseSelection");
-	});
-
-
-	$(".lesson-word").hover(function(){
-		if (window.getSelection) {
-			var selection = window.getSelection();
-			if (selection.rangeCount > 0) {
-				range = selection.getRangeAt(0);
-				var firstWordSelectedId = range.startContainer.parentNode.id;
-				var lastWordSelectedId = range.endContainer.parentNode.id;
-
-				var firstWordIndex = firstWordSelectedId.match(/\d+/);
-				var lastWordIndex = lastWordSelectedId.match(/\d+/);
-
-				for( var i = firstWordIndex; i <= lastWordIndex; i++) {
-					var wordSelector = "#word-" + i + "-page-" + pageNumber;
-					$(wordSelector).addClass("phraseSelection");
-				}
-	      	} 
-
-	    }
-	})
-}
 
 refreshArrows = function() {
 	if(parseInt($("#page-number").text()) == 1) {
@@ -100,7 +64,6 @@ goToPage = function(page_to_display) {
 	$(".article-section").prepend(page_text);
 
 	addTranslationListener();
-	addPhraseListener(page_to_display, page_words.length);
 }
 
 
@@ -250,11 +213,62 @@ adapt_navbar_color = function() {
 	}
 }
 
+onlyOneWordSelected = function() {
+	if (window.getSelection) {
+		var selection = window.getSelection();
+		if (selection.rangeCount > 0) {
+			range = selection.getRangeAt(0);
+			var firstWordSelectedId = range.startContainer.parentNode.id;
+			var lastWordSelectedId = range.endContainer.parentNode.id;
+
+			return firstWordSelectedId == lastWordSelectedId;
+		} 
+
+	} else {
+		return true;
+	}
+}
+
 // Must be called after the pages have been created
 addTranslationListener = function() {
-	$("span.lesson-word").mousedown(function() {
+	$("span.lesson-word").mouseup(function() {
+
+		// This function only works when 1 word has been selected. If the user
+		// selects multiple words, then addPhraseListener() will automatically
+		// take care of the translation and pronunciation
 		if (top.location.pathname.includes('/articles/')) {
-			var text = $(this).text();
+			
+			// if the user had previously selected other words far from the
+			// one currently clicked, then the user does not want 
+			// a sentence translation. We just ignore the words that 
+			// were previously selected
+			var selectedWords = $(".user-selection");
+			if(selectedWords.length > 0) {
+				var lastWordSelected = selectedWords[selectedWords.length - 1];
+
+				// get the index of the last word selected. 
+				var lastWordSelectedIndex = lastWordSelected.id.slice(5, 7).match(/\d+/)[0];
+				var currentWordIndex = $(this)[0].id.slice(5, 7).match(/\d+/)[0];
+
+				if(currentWordIndex - lastWordSelectedIndex != 1) {
+					selectedWords.removeClass("user-selection");
+				}
+			}
+
+			$(this).addClass("user-selection");
+			
+			// Combine all the selected words
+			var allWords = $(".user-selection");
+			var text = "";
+			for( var i = 0; i < allWords.length; i++) {
+				
+
+				text += allWords[i].innerText;
+				if(i != allWords.length - 1) {
+					text += " ";
+				}
+				
+			}
 
 			$(".word-highlighted").text(text);
 
@@ -271,8 +285,6 @@ addTranslationListener = function() {
 			.done(function(data) {
 				translatedText = data.data.translations[0].translatedText
 				$("#translation").text(translatedText);
-
-				pronounce();
 
 				// Create a card
 				var dataCard = { 
