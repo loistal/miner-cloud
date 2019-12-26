@@ -1,12 +1,13 @@
 @import "bootstrap";
 
 ::-moz-selection { /* Code for Firefox */
-  background: #FFFC55;
+	background-color: rgba(255, 255, 255, 0)	
 }
 
 ::selection {
-  background: #FFFC55;
+	background-color: rgba(255, 255, 255, 0)
 }
+
 
 body {
 	font-family: nunito, Arial, Helvetica, sans-serif;
@@ -347,6 +348,7 @@ hr {
 
 #link-pronunciation {
 	margin-bottom: 20px;
+	cursor: pointer;
 }
 
 .col-button {
@@ -387,8 +389,7 @@ hr {
 }
 
 .lesson-word:hover {
-	cursor: pointer;
-	background-color: #DAEAF0;	
+	cursor: pointer;	
 }
 
 #lesson-go-back, #lesson-go-forward  {
@@ -411,4 +412,8 @@ hr {
 
 .lesson-nav:hover {
 	background-color: #EAEAEA;
+}
+
+.phraseSelection {
+	background-color: #FFE579;
 }

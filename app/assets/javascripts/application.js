@@ -18,6 +18,43 @@
 //= require turbolinks
 //= require_tree .
 
+addPhraseListener = function(pageNumber, numberOfWords) {
+	// if start selecting a word, then make sure the whole word is selected
+	// even if the user starts the selection in the middle
+
+	var down = false;
+	$(document).mousedown(function() {
+	    down = true;
+	}).mouseup(function() {
+	    down = false;  
+	});
+
+	$("#row-article").click(function() {
+		$(".lesson-word").removeClass("phraseSelection");
+	});
+
+
+	$(".lesson-word").hover(function(){
+		if (window.getSelection) {
+			var selection = window.getSelection();
+			if (selection.rangeCount > 0) {
+				range = selection.getRangeAt(0);
+				var firstWordSelectedId = range.startContainer.parentNode.id;
+				var lastWordSelectedId = range.endContainer.parentNode.id;
+
+				var firstWordIndex = firstWordSelectedId.match(/\d+/);
+				var lastWordIndex = lastWordSelectedId.match(/\d+/);
+
+				for( var i = firstWordIndex; i <= lastWordIndex; i++) {
+					var wordSelector = "#word-" + i + "-page-" + pageNumber;
+					$(wordSelector).addClass("phraseSelection");
+				}
+	      	} 
+
+	    }
+	})
+}
+
 refreshArrows = function() {
 	if(parseInt($("#page-number").text()) == 1) {
 		$("#lesson-go-back").css("display", "none");
@@ -45,7 +82,7 @@ goToPage = function(page_to_display) {
 	// keep track of the number of characters for the current line
 	var current_characters = 0;  
 	for(var i = 0; i < page_words.length; i++) {
-		page_text += '<span class="lesson-word">' + page_words[i] + '</span>';
+		page_text += '<span id="word-' + i + '-page-' + page_to_display + '"class="lesson-word">' + page_words[i] + '</span>';
 		current_characters += page_words[i].length;
 
 		if(i < page_words.length - 1) {
@@ -63,6 +100,7 @@ goToPage = function(page_to_display) {
 	$(".article-section").prepend(page_text);
 
 	addTranslationListener();
+	addPhraseListener(page_to_display, page_words.length);
 }
 
 
@@ -234,6 +272,8 @@ addTranslationListener = function() {
 				translatedText = data.data.translations[0].translatedText
 				$("#translation").text(translatedText);
 
+				pronounce();
+
 				// Create a card
 				var dataCard = { 
 					stage: 1, 
@@ -246,10 +286,10 @@ addTranslationListener = function() {
 
 				$.post("/createcard", dataCard)
 				.done(function(data) {
-					console.log("Card successfully created");
+
 				})
 				.fail(function(data) {
-					console.log("Error creating the card");
+
 				});
 			})
 			.fail(function(data) {
