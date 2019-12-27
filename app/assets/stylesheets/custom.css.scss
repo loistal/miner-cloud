@@ -1,11 +1,11 @@
 @import "bootstrap";
 
 ::-moz-selection { /* Code for Firefox */
-	background-color: rgba(255, 255, 255, 0)	
+	background-color: #FFFC55;	
 }
 
 ::selection {
-	background-color: rgba(255, 255, 255, 20)
+	background-color: #FFFC55;
 }
 
 
@@ -46,6 +46,7 @@ hr {
 	border-radius: 10px;
 	box-shadow: 0 0 30px grey;
 	margin-top: -40px;
+	cursor: pointer;
 }
 
 #hero-container {
@@ -109,7 +110,7 @@ hr {
 }
 
 #first-section {
-	margin-top: 80px;
+	margin-top: 50px;
 }
 
 .profile-pic {
@@ -122,7 +123,7 @@ hr {
 }
 
 .reason-text {
-	width: 80%;
+	font-size: 1.5em;
 }
 
 .modal-dialog {
@@ -426,4 +427,23 @@ hr {
 	color: white;
 	font-size: 2em;
 	font-weight: 700;
+}
+
+#main-title {
+	font-weight: 700;
+	color: white;
+	font-size: 3em;
+}
+
+#home-h2 {
+	font-size: 2em;
+}
+
+#icon-home {
+	font-size: 100px;
+}
+
+#conditions-subscription {
+	margin-top: 5px;
+	font-size: 0.7em;
 }

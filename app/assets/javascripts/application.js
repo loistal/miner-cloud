@@ -315,7 +315,7 @@ change_body_color = function() {
 	if (top.location.pathname.includes('/articles/')) {
 		$("body").css("background-color","#FBFBFB");
 	} else {
-		$("body").css("background-color","#FBFBFB");
+		$("body").css("background-color","white");
 	}
 }
 

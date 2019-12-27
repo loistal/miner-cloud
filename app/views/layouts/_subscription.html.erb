@@ -8,38 +8,22 @@
 
             <div class="col-md-6">
               <p>
-                🚀 <b class="highlighted">Integrated tools to help sentence mining</b>  for AJATTers, MIA followers and Japanese learners.
+                💸 <b class="highlighted">A free alternative</b> to Lingq
               </p>
               <p>
-                🗂 <b class="highlighted">Sentence-based SRS</b>
+                🗂 <b class="highlighted">SRS</b> to help you remember words / phrases
               </p>
               <p>
                 📓 <b class="highlighted">A text reader</b> to help you with difficult vocab
               </p>
               <p>
-                🇯🇵 <b class="highlighted">Integrated Japanese dictionary</b> for monolingual learners
+                🎧 <b class="highlighted">Listen to the pronunciation</b> (using machine learning)
               </p>
-              <p>
-                🏗 <b class="highlighted">Example sentences</b> 
-              </p>
-              <p>
-                🇺🇸 <b class="highlighted">English translation</b> (if you want)
-              </p>
+                  <p id="conditions-subscription">By clicking this button you accept our <a target="_blank" href="https://www.termsandconditionsgenerator.com/live.php?token=3WlCJqTEHuWNADR73bWmdBTSOwR55062">Terms of Service</a> and <a target="_blank" href="https://www.gdprprivacypolicy.net/live.php?token=exTMfUCMxoh8rbgHwxAdXFmDabmBEt9v">Privacy Policy</a>. We will not share your data with third parties and you will only receive newsletters and notifications from polyglot lab.</p>
             </div>
 
             <div class="col-md-6">
-              <h2 id="title-modal" align="center">Start mining 🚀</h2>
-              <div class="pricing">
-                <p id="prices-paragraph" align="center">
-                  <b id="prices">
-                    1 month: $10/month <br>
-                    12 month: $99/year
-                  </b>
-                  <br>
-                  <small>Save 18% per year: $8.24/month </small>
-                </p>
-
-              </div>
+              <h2 id="title-modal" align="center">Start learning 🚀</h2>
 
               <%= form_for(:user, html: {role: "form", id: "homepage-signup"}, url: signup_path) do |f| %>
               <div class="form-group">
@@ -48,13 +32,13 @@
 
                 <%= f.password_field :password, placeholder: "Choose a password" , class: "form-control" %>
 
-                <%= f.button "Start mining", class: "btn btn-primary miner-button full-width" %>
+                <%= f.button "Start learning", class: "btn btn-primary miner-button full-width" %>
+                
               </div>
-              <% end %>
-              <p align="center">Already a member? <a href="#">Log in</a></p>
-              
+              <% end %>              
             </div>
           </div>
+ 
         </div>
       </div>
 
