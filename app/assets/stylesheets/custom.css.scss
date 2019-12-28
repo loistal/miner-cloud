@@ -44,6 +44,10 @@ hr {
 	font-size: 1.5em;
 }
 
+#flash-messages {
+	margin-top: 20px;
+}
+
 .video-enroll {
 	padding: 30px;
 	background-color: white;
@@ -95,9 +99,9 @@ hr {
 .hero-miner {
 	background-image: asset-url('hero-background.jpg');
 	background-size: cover;
-	height: 400px;
-	padding-top: 150px;
-	margin-top: -80px;
+	height: 450px;
+	padding-top: 250px;
+	margin-top: -200px;
 }
 
 .full-width {

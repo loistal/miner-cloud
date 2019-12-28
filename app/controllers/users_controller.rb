@@ -6,9 +6,18 @@ class UsersController < ApplicationController
 
 		if @user.save 
 			UserMailer.welcome_email(@user).deliver_now
+			flash.now = "You have successfully logged in"
 			redirect_to text_path
 		else
-			# do something
+			@errors = "You account couldn't be created: "
+
+			for error_message in @user.errors.full_messages
+				@errors.concat(error_message)
+			end
+
+			flash[:now] = @errors
+
+			redirect_to root_path
 		end
 
 	end

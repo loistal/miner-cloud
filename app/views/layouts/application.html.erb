@@ -1,24 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MinerCloud</title>
-  <%= csrf_meta_tags %>
-  <%= csp_meta_tag %>
+	<title>MinerCloud</title>
+	<%= csrf_meta_tags %>
+	<%= csp_meta_tag %>
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 
 <body>
 
-  <%= render 'layouts/header' %>
+	<%= render 'layouts/header' %>
 
+	<div id="flash-messages" class="container">
+		<% flash.each do |type, msg| %>
+		<div class="alert alert-info">
+			<%= msg %>
+		</div>
+		<% end %>
+	</div>
 
-<%= yield %>
+	<%= yield %>
 
-<%= render 'layouts/footer' %>
+	
+
+	<%= render 'layouts/footer' %>
 
 </body>
 </html>
