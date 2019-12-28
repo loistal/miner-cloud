@@ -88,6 +88,10 @@ hr {
 	margin: 0 10px;
 }
 
+.navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 1);
+}
+
 .hero-miner {
 	background-image: asset-url('hero-background.jpg');
 	background-size: cover;
@@ -452,10 +456,6 @@ hr {
 #conditions-subscription {
 	margin-top: 5px;
 	font-size: 0.7em;
-}
-
-.nav-link {
-	color: black !important;
 }
 
 .navbar-dark .navbar-brand {

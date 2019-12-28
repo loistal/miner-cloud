@@ -214,7 +214,11 @@ deleteClicked = function() {
 adapt_navbar_color = function() {
 	if (top.location.pathname != "/") {
 		$("#polyglot-lab-logo").css("color", "white");
-		$(".nav-link").css("color", "white");
+		$(".nav-link.nav-miner").css("color", "black !important");
+	}
+
+	if(top.location.pathname == "/") {
+		$("nav-link").css("color", "white !important");
 	}
 
 	var navbar_light_urls = ["/text", "/filter", "/articles", "/card", "/account"];
