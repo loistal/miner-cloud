@@ -25,14 +25,7 @@
 					<button type="button" class="btn btn-primary miner-button full-width">Good</button>
 				</div>
 			</div>	
-			<b>Deck statistics 📈</b>
-			<ul id="list-statistics">
-				<li><b><%= @totalNumberCards %></b> cards total</li>
-				<li><b><%= @masteredCards %></b> cards mastered 🎓</li>
-				<li><b><%= @longTermMemCards %></b> cards in long-term memory 🧠</li>
-				<li><b><%= @shortTermMemCards %></b> cards in short-term memory 🐣</li>
-			</ul>
-			<b>This card 📊</b>
+			<b>Card stats 📊</b>
 			<ul id="list-statistics">
 				<li id="memory-stage">Stage <%= @nextCard.stage %></li>
 				<li>Reviewed <b id="times-reviewed"><%= @nextCard.timesreviewed %></b> times</li>

@@ -1,45 +1,66 @@
-<nav id="miner-navbar" class="navbar navbar-expand-lg navbar-light">
-	<div class="container">
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+<div class="container">
+	<nav class="navbar navbar-expand-lg navbar-dark">
+		<a id="polyglot-lab-logo" class="navbar-brand" href="#">
+			<div>
+				polyglot <span style="font-family: pacifico">lab</span>
+			</div>
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="modal" data-target="#navigationModal">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
-		<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-			<div id="logo-text" class="nav-item">
-				polyglot <span style="font-family: pacifico">lab</span>
+		<div class="modal fade" id="navigationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-xl" role="document">
+				<div class="modal-content">
+
+					<div id="nav-modal-body" class="modal-body">
+
+						<% if logged_in? %>
+
+						<%= link_to "Articles", text_path, class: "modal-nav-item" %>
+						<br>
+						<!-- Button trigger modal -->
+						<a href="#" class="modal-nav-item" data-toggle="modal" data-target="#uploadArticleModal">
+							Upload article
+						</a>
+						<br>
+						<%= link_to "SRS", card_path, class: "modal-nav-item" %>
+						<br>
+						<%= link_to "Account", account_path, class: "modal-nav-item" %>
+						<br>
+						<%= link_to "Logout", logout_path, method: :delete, class: "modal-nav-item" %>
+						<br>
+						<% else %>
+						<a onclick="toggleModal()" href="#" class="modal-nav-item" data-toggle="modal" data-target="#loginModal">Log in</a>
+						<% end %>
+
+					</div>
+				</div>
+
 			</div>
+		</div>
 
-			<!--
-			<a class="navbar-brand" href="/">
-
-				<%= image_tag("logo.png", :alt => "logo", :class => "d-inline-block align-top logo-header") %>
-			</a>
-
-		-->
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<% if logged_in? %>
-					
-					<%= link_to "Articles", text_path, class: "miner-menu-item" %>
 
-					<!-- Button trigger modal -->
-					<a href="#" class="miner-menu-item" data-toggle="modal" data-target="#uploadArticleModal">
-						Upload article
-					</a>
+				<% if logged_in? %>
 
-					<%= link_to "SRS", card_path, class: "miner-menu-item" %>
-					<%= link_to "Account", account_path, class: "miner-menu-item" %>
-					<%= link_to "Logout", logout_path, method: :delete, class: "miner-menu-item" %>
-					<% else %>
-					<a href="#" class="miner-menu-item" data-toggle="modal" data-target="#loginModal">Log in</a>
-					<% end %>
-				</li>
-				
+				<%= link_to "Articles", text_path, class: "nav-link" %>
+
+				<!-- Button trigger modal -->
+				<a href="#" class="nav-link" data-toggle="modal" data-target="#uploadArticleModal">
+					Upload article
+				</a>
+
+				<%= link_to "SRS", card_path, class: "nav-link" %>
+				<%= link_to "Account", account_path, class: "nav-link" %>
+				<%= link_to "Logout", logout_path, method: :delete, class: "nav-link" %>
+				<% else %>
+					<a href="#" class="nav-link" data-toggle="modal" data-target="#loginModal">Log in</a>
+				<% end %>
 			</ul>
-		</ul>
-
-	</div>
-	</div>
-</nav>
+		</div>
+	</nav>
+</div>
 
 <%= render 'layouts/upload' %>

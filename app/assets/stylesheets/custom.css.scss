@@ -14,6 +14,10 @@ body {
 	font-size: 16px;
 }
 
+.navbar {
+	padding: 10px 0 !important;
+}
+
 h1 {
 	font-weight: 900;
 }
@@ -89,7 +93,7 @@ hr {
 	background-size: cover;
 	height: 400px;
 	padding-top: 150px;
-	margin-top: -100px;
+	margin-top: -80px;
 }
 
 .full-width {
@@ -235,8 +239,6 @@ hr {
 
 .miner-menu-item {
 	color: white;
-	font-size: 20px;
-	font-weight: 600;
 	margin: 0 10px;
 }
 
@@ -278,8 +280,8 @@ hr {
 	margin-bottom: 30px;
 }
 
-.main-title-page {
-	margin-top: 40px;
+#main-title-page {
+	margin-top: 70px;
 }
 
 .article-section {
@@ -299,6 +301,10 @@ hr {
 	font-size: 2em;
 	margin-bottom: 10px;
 
+}
+
+#polyglot-lab-logo {
+	color: white;
 }
 
 .miner-container {
@@ -447,3 +453,165 @@ hr {
 	margin-top: 5px;
 	font-size: 0.7em;
 }
+
+.nav-link {
+	color: black !important;
+}
+
+.navbar-dark .navbar-brand {
+    color: black;
+}
+
+.modal-nav-item {
+	color: black;
+	text-decoration: underline;
+	font-weight: 700;
+	font-size: 2em;
+}
+
+.modal-nav-item:hover {
+	color: black;
+}
+
+#nav-modal-body {
+	text-align: center;
+}
+
+.text-icon-smartphones {
+	display: none;
+}
+
+#row-page-mobile {
+	display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  #miner-navbar {
+    padding: 10px 20px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .video-enroll {
+    padding: 20px;
+  }
+
+  #icon-home {
+  	font-size: 90px;
+  }
+
+  .modal-dialog {
+  	margin: 30px;
+  }
+
+  .choose-text {
+  	width: 80%;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .video-enroll {
+    margin-top: 40px;
+  }
+
+  #first-section {
+  	margin-top: 350px;
+  }
+
+  #icon-home {
+  	display: none;
+  }
+
+  #col-subscription {
+  	margin-bottom: 20px;
+  }
+
+  .search-results {
+  	font-size: 1.5em;
+  }
+
+  .text-icon {
+  	font-size: 60px;
+  }
+
+  #row-article {
+  	padding: 20px 0;
+  }
+
+  .article-title {
+  	font-size: 1.5em;
+  }
+
+  .miner-container {
+  	margin: 10px;
+  	padding: 20px;
+  	width: 95%;
+  }
+
+  #lesson-go-back {
+  	display: none !important;
+  }
+
+  #lesson-go-forward {
+  	display: none;
+  }
+
+  #lesson-go-back {
+  	display: none;
+  }
+
+  #page-indicator {
+  	display: none;
+  }
+
+  #page-indicators-mobile {
+  	margin-left: auto;
+  	margin-right: auto;
+  }
+
+  #row-page-mobile {
+  	display: block;
+  	text-align: center;
+  	text-decoration: underline;
+  }
+
+  #lesson-upload-info {
+  	display: none;
+  }
+
+  #card-content {
+    position: static;
+    -webkit-transform: none;
+  }
+
+  .modal-body {
+  	padding: 20px;
+  }
+
+  #login-modal-content {
+	width: 80%;
+  }
+
+
+}
+
+
+@media only screen and (max-width: 576px) {
+  footer {
+  	margin-left: 20px;
+  	margin-right: 20px;
+  }
+
+  .col-icon {
+  	display: none;
+  }
+
+  .text-icon-smartphones {
+  	display: inline;
+  }
+
+  .row-text {
+  	margin-bottom: 20px;
+  }
+}
+

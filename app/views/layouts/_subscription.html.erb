@@ -6,7 +6,23 @@
         <div class="container-fluid">
           <div class="row">
 
-            <div class="col-md-6">
+            <div id="col-subscription" class="col-md-6">
+              <h2 id="title-modal" align="center">Start learning 🚀</h2>
+
+              <%= form_for(:user, html: {role: "form", id: "homepage-signup"}, url: signup_path) do |f| %>
+              <div class="form-group">
+                <%= f.email_field :email, placeholder: "Enter your email", class: "form-control" %>
+
+
+                <%= f.password_field :password, placeholder: "Choose a password" , class: "form-control" %>
+
+                <%= f.button "Start learning", class: "btn btn-primary miner-button full-width" %>
+                
+              </div>
+              <% end %>              
+            </div>
+
+                <div class="col-md-6">
               <p>
                 💸 <b class="highlighted">A free alternative</b> to Lingq
               </p>
@@ -22,21 +38,6 @@
                   <p id="conditions-subscription">By clicking this button you accept our <a target="_blank" href="https://www.termsandconditionsgenerator.com/live.php?token=3WlCJqTEHuWNADR73bWmdBTSOwR55062">Terms of Service</a> and <a target="_blank" href="https://www.gdprprivacypolicy.net/live.php?token=exTMfUCMxoh8rbgHwxAdXFmDabmBEt9v">Privacy Policy</a>. We will not share your data with third parties and you will only receive newsletters and notifications from polyglot lab.</p>
             </div>
 
-            <div class="col-md-6">
-              <h2 id="title-modal" align="center">Start learning 🚀</h2>
-
-              <%= form_for(:user, html: {role: "form", id: "homepage-signup"}, url: signup_path) do |f| %>
-              <div class="form-group">
-                <%= f.email_field :email, placeholder: "Enter your email", class: "form-control" %>
-
-
-                <%= f.password_field :password, placeholder: "Choose a password" , class: "form-control" %>
-
-                <%= f.button "Start learning", class: "btn btn-primary miner-button full-width" %>
-                
-              </div>
-              <% end %>              
-            </div>
           </div>
  
         </div>

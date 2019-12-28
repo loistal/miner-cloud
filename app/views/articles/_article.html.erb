@@ -1,14 +1,13 @@
 <a class="row-text-link" href="/articles/<%= article.id %>">
 	<div class="row row-text">
-		<div class="col-md-2">
+		<div class="col-sm-2 col-icon">
 			<p class="text-icon" align="center"><%= article.icon %></p>
 		</div>	
-		<div class="col-md-8">
+		<div class="col-sm-8">
 			<p>uploaded by <b>@<%= article.user.get_username() %></b></p>
-			<h2><%= article.title %></h2>
-			<div><%= article.difficulty %></div>
+			<h2> <span class="text-icon-smartphones"><%= article.icon %></span> <%= article.title %></h2>
 		</div>
-		<div class="col-md-2">
+		<div class="col-sm-2">
 			📎 <%= time_ago_in_words(article.created_at) %> ago
 		</div>
 	</div>

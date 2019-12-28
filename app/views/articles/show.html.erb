@@ -2,7 +2,7 @@
 	<div id="row-article" class="row">
 		<div class="col-md-8 miner-container">
 			<h2 onmouseup="addTranslationListener()" class="article-title"><%= @article.icon %> <%= @article.title %></h2>
-			<p>uploaded by <b>@<%= @article.user.get_username() %></b> <%= time_ago_in_words(@article.created_at) %></p>
+			<p id="lesson-upload-info">uploaded by <b>@<%= @article.user.get_username() %></b> <%= time_ago_in_words(@article.created_at) %></p>
 
 			<div class="row">
 				<div onClick="previousPage()" id="lesson-go-back" class="col-md-1">
@@ -17,7 +17,19 @@
 				</div>
 			</div>
 
-			<p align="center">page <span id="page-number">1</span></p>
+			<div id="row-page-mobile" class="row">
+				<span id="page-indicators-mobile">
+					<span onClick="previousPage()" id="lesson-go-back-mobile">
+						previous page | 
+					</span>
+
+					<span onClick="nextPage()" id="lesson-go-forward-mobile">
+						next page
+					</span>
+				</span>
+			</div>
+
+			<p id="page-indicator" align="center">page <span id="page-number">1</span></p>
 
 			<div style="display: none;" id="full-lesson">
 				<%= @article.lesson %>

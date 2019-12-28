@@ -18,6 +18,9 @@
 //= require turbolinks
 //= require_tree .
 
+toggleModal = function() {
+	$("#navigationModal").modal("toggle");
+}
 
 refreshArrows = function() {
 	if(parseInt($("#page-number").text()) == 1) {
@@ -33,7 +36,8 @@ goToPage = function(page_to_display) {
 	var words_array = lesson_text.split(" ");
 
 	// Break up the lesson in pages of 370 characters max 
-	var max_character_page = 50;
+
+	var max_character_page = Math.ceil(window.innerWidth / 30);
 	var number_of_pages = Math.ceil(words_array.length / max_character_page);
 
 	var starting_character = (page_to_display - 1) * max_character_page
@@ -97,11 +101,12 @@ format_lesson = function() {
 	var words_array = lesson_text.split(" ");
 
 	// Break up the lesson in pages of 370 characters max 
-	var number_of_pages = Math.ceil(words_array.length / 370);
+	var words_per_page = 100;
+	var number_of_pages = Math.ceil(words_array.length / words_per_page);
 
 	var all_pages = [];
 	for(var i = 0; i < number_of_pages; i++) {
-		var single_page = words_array.slice(i * 370, i + 370);
+		var single_page = words_array.slice(i * words_per_page, i + words_per_page);
 		all_pages.push(single_page);
 	}
 
@@ -208,9 +213,19 @@ deleteClicked = function() {
 
 adapt_navbar_color = function() {
 	if (top.location.pathname != "/") {
-		$("#miner-navbar").css("background-color","rgba(255, 255, 255, 1)");
-		$(".miner-menu-item").addClass("black-item");
+		$("#polyglot-lab-logo").css("color", "white");
+		$(".nav-link").css("color", "white");
 	}
+
+	var navbar_light_urls = ["/text", "/filter", "/articles", "/card", "/account"];
+
+	for(var i = 0; i < navbar_light_urls.length; i++) {
+		if(top.location.pathname.includes(navbar_light_urls[i])) {
+			$(".navbar.navbar-expand-lg.navbar-dark").removeClass("navbar-dark").addClass("navbar-light");
+			$("#polyglot-lab-logo").css("color", "black");
+		}
+	}
+
 }
 
 // Must be called after the pages have been created
