@@ -5,9 +5,17 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 
 		if @user.save 
-			UserMailer.welcome_email(@user).deliver_now
-			flash.now = "You have successfully logged in"
-			redirect_to text_path
+
+			begin
+				UserMailer.welcome_email(@user).deliver_now
+			rescue Timeout::Error => e
+				puts "TIMEOUT TIMEOUT HELLO"
+				flash[:now] = e
+  			else
+  				flash[:now] = "We've sent you an email to confirm your account."
+			end
+
+			redirect_to root_path
 		else
 			@errors = "You account couldn't be created: "
 

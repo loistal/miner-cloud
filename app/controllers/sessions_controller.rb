@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
 
 	# homepage
 	def index
+		
 	end
 
 
@@ -11,12 +12,12 @@ class SessionsController < ApplicationController
 		user = User.find_by(email: params[:session][:email])
 		if user && user.authenticate(params[:session][:password])
 			session[:user_id] = user.id 
-			flash.now = "You have successfully logged in"
+			flash[:now] = "You have successfully logged in"
 			redirect_to root_path 
 		else
 			puts "FAILED"
 			flash.alert = "Something is wrong with the information you provided"
-			redirect_to root_path
+			redirect_to text_path
 		end
 	end
 
