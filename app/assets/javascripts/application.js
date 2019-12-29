@@ -131,7 +131,7 @@ pronounce = function (){
 
 	var msg = new SpeechSynthesisUtterance();
 	msg.volume = 1;
-	msg.rate = 1;
+	msg.rate = 0.7;
 	msg.pitch = 1;
 	msg.text = $("#word-selected").text();
 
@@ -142,14 +142,15 @@ pronounce = function (){
 }
 
 rescheduleCard = function(path) {
-// Create a card
-var dataCard = { 
-	source: $("#card-answer").text()
-}
+	// Create a card
+	var dataCard = { 
+		source: $("#card-answer").text()
+	}
 
 	// reschedule the current card 
 	$.post(path, dataCard)
 	.done(function(nextCardData) {
+		console.log(nextCardData);
 		prepareNextCard(nextCardData);
 	})
 	.fail(function(data) {
@@ -232,6 +233,26 @@ adapt_navbar_color = function() {
 
 }
 
+create_new_card = function() {
+	// Create a card
+	var dataCard = { 
+		stage: 1, 
+		source: $(".word-highlighted").text(),
+		translation: $("#translation").text(),
+		timesreviewed: "0", 
+		timessuccess: "0", 
+		timesfailed: "0", 
+	}
+
+	$.post("/createcard", dataCard)
+	.done(function(data) {
+		$("#create-card-button").text("Flahscard created ✔")
+	})
+	.fail(function(data) {
+
+	});
+}
+
 // Must be called after the pages have been created
 addTranslationListener = function() {
 	$("span.lesson-word").mouseup(function() {
@@ -256,24 +277,18 @@ addTranslationListener = function() {
 				// the words selected are not next to each other
 				if(currentWordIndex - lastWordSelectedIndex != 1) {
 					selectedWords.removeClass("user-selection");
-				} else {
-					// the words selected form a phrase => we need to
-					// delete the last card created since we will replaced
-					// it with a new phrase card
-					$.post("/delete-last-card")
-					.done(function(data) {
-
-					})
-					.fail(function(data) {
-
-					});
-
-				}
-
-
+				} 
 			}
 
 			$(this).addClass("user-selection");
+			$(this).mouseup(function() {
+				if($(this).hasClass("user-selection")) {
+					$(this).removeClass("user-selection");
+				} else {
+					$(this).addClass("user-selection");
+				}
+			});
+			
 			
 			// Combine all the selected words
 			var allWords = $(".user-selection");
@@ -290,6 +305,8 @@ addTranslationListener = function() {
 
 			$(".word-highlighted").text(text);
 
+			$("#create-card-button").text("Create a flashcard");
+
 			// Data to be sent to google translate
 			var data = { 
 				key: "AIzaSyAZRIGDoQtbpumlDHk4M4IWvu9TobmtXSM", 
@@ -303,24 +320,6 @@ addTranslationListener = function() {
 			.done(function(data) {
 				translatedText = data.data.translations[0].translatedText
 				$("#translation").text(translatedText);
-
-				// Create a card
-				var dataCard = { 
-					stage: 1, 
-					source: text,
-					translation: translatedText,
-					timesreviewed: "0", 
-					timessuccess: "0", 
-					timesfailed: "0", 
-				}
-
-				$.post("/createcard", dataCard)
-				.done(function(data) {
-
-				})
-				.fail(function(data) {
-
-				});
 			})
 			.fail(function(data) {
 				alert( "error" );

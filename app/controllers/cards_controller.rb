@@ -111,6 +111,7 @@ class CardsController < ApplicationController
 		@nextCard.save
 
 		# return the next card to be displayed
+
 		render json: get_next_card()
 	end
 
@@ -138,7 +139,13 @@ class CardsController < ApplicationController
 	private 
 
 	def get_next_card
-		return Card.where("due_on <= ? AND stage != 10 AND user_id = " + current_user.id.to_s, Time.current).first
+		@next_cards = Card.where("due_on <= ? AND stage != 10 AND user_id = " + current_user.id.to_s, Time.current)
+		
+		if @next_cards.count >= 1
+			return @next_cards.first
+		else
+			return "No more cards"
+		end		
 	end
 
 end
