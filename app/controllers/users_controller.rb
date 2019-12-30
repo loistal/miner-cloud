@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 				puts "TIMEOUT TIMEOUT HELLO"
 				flash[:now] = e
   			else
-  				flash[:now] = "We've sent you an email to confirm your account."
+  				flash[:now] = "Success! Please log in to start learning."
 			end
 
 			redirect_to root_path

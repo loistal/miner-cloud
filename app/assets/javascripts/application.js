@@ -116,7 +116,6 @@ pronounce = function (){
 	languagesInfo = {
 		"spanish" : "es-MX",
 		"french" : "fr-FR",
-		"japanese" : "ja-JP",
 		"chinese" : "zh-TW",
 		"korean" : "ko-KR",
 		"german" : "de-DE",

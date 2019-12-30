@@ -1,0 +1,12 @@
+<div class="container">
+	<h1 class="main-title-page">
+		Create a new password
+	</h1>
+
+	<%= form_for(:forgot_password, html: {class: "", role: "form", id: "forgotPasswordFormRoot"}, url: forgot_path) do |f| %>
+	<div class="field">
+		<%= f.email_field :email, placeholder: "Your email", class: "form-control" %>
+	</div>
+	<%= f.button "Reset my password", class: "btn btn-primary miner-button full-width" %>
+	<% end %>
+</div>

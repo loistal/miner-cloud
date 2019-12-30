@@ -1,7 +1,12 @@
 class CardsController < ApplicationController
 
 	def index
-		@nextCard = get_next_card()
+		begin
+			@nextCard = get_next_card()
+		rescue Exception
+			# if there is no card due
+			@nextCard = nil
+		end
 		
 		@totalNumberCards = Card.all.count
 		@masteredCards = Card.where(stage: 10).count
@@ -144,7 +149,7 @@ class CardsController < ApplicationController
 		if @next_cards.count >= 1
 			return @next_cards.first
 		else
-			return "No more cards"
+			raise "Error : no more cards due!"
 		end		
 	end
 
