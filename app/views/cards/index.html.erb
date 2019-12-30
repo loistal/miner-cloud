@@ -5,11 +5,11 @@
 			<div id="card-content">
 
 				<% if @nextCard.blank? %>
-					<p align="center" class="card-text">No cards due</p>
+				<p align="center" class="card-text">No cards due</p>
 				<% else %>
 
-					<p id="word-recall" align="center" class="card-text"><%= @nextCard.translation %></p>
-					<p id="card-answer" align="center" class="card-text"><%= @nextCard.source %> </p>		
+				<p id="word-recall" align="center" class="card-text"><%= @nextCard.translation %></p>
+				<p id="card-answer" align="center" class="card-text"><%= @nextCard.source %> </p>		
 				<% end %>
 			</div>
 
@@ -18,34 +18,38 @@
 			
 		</div>
 
-		<div class="col-md-3 miner-container">
-			<% if @nextCard.blank? %>
-				<p>Read some <%= link_to "articles", text_path %> and create new cards!</p>
-			<% else %>
-				<div id="card-buttons" class="row">
-					<div id="answer-button" class="col-md-12 col-button">
-						<button onclick="displayAnswer()" type="button" class="btn btn-primary miner-button full-width">Answer</button>
-					</div>
-
-					<div onclick="againClicked()" id="again-button" class="col-md-6 col-button">
-						<button type="button" class="btn btn-primary miner-button full-width">Again</button>
-					</div>
-					<div onclick="goodClicked()" id="good-button" class="col-md-6 col-button">
-						<button type="button" class="btn btn-primary miner-button full-width">Good</button>
-					</div>
-				</div>	
-				<b>Card stats 📊</b>
-				<ul id="list-statistics">
-					<li id="memory-stage">Stage <%= @nextCard.stage %></li>
-					<li>Reviewed <b id="times-reviewed"><%= @nextCard.timesreviewed %></b> times</li>
-					<li>Successful recalls: <b id="successful-recalls"><%= @nextCard.timessuccess %></b></li>
-					<li>Failed recalls: <b id="failed-recalls"><%= @nextCard.timesfailed %></b></li>
-				</ul>
-
-				<p id="mark-mastered" onClick="masteredClicked()" class="link-miner">Mark as mastered 🚀</p>
-				<p id="delete-from-deck" onClick="deleteClicked()" class="link-miner">Delete from deck 🗑</p>
-
-			<% end %>
+		<% if @nextCard.blank? %>
+		<div id="no-cards-sidebar" class="col-md-3 miner-container">
+			<p>Read some <%= link_to "articles", text_path %> and create new cards!</p>
 		</div>
+		<% else %>
+		<div id="card-sidebar" class="col-md-3 miner-container">
+
+			<div id="card-buttons" class="row">
+				<div id="answer-button" class="col-md-12 col-button">
+					<button onclick="displayAnswer()" type="button" class="btn btn-primary miner-button full-width">Answer</button>
+				</div>
+
+				<div onclick="againClicked()" id="again-button" class="col-md-6 col-button">
+					<button type="button" class="btn btn-primary miner-button full-width">Again</button>
+				</div>
+				<div onclick="goodClicked()" id="good-button" class="col-md-6 col-button">
+					<button type="button" class="btn btn-primary miner-button full-width">Good</button>
+				</div>
+			</div>	
+			<b>Card stats 📊</b>
+			<ul id="list-statistics">
+				<li id="memory-stage">Stage <%= @nextCard.stage %></li>
+				<li>Reviewed <b id="times-reviewed"><%= @nextCard.timesreviewed %></b> times</li>
+				<li>Successful recalls: <b id="successful-recalls"><%= @nextCard.timessuccess %></b></li>
+				<li>Failed recalls: <b id="failed-recalls"><%= @nextCard.timesfailed %></b></li>
+			</ul>
+
+			<p id="mark-mastered" onClick="masteredClicked()" class="link-miner">Mark as mastered 🚀</p>
+			<p id="delete-from-deck" onClick="deleteClicked()" class="link-miner">Delete from deck 🗑</p>
+
+			
+		</div>
+		<% end %>
 	</div>
 </div>

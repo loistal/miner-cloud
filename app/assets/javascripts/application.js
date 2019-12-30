@@ -116,7 +116,6 @@ pronounce = function (){
 	languagesInfo = {
 		"spanish" : "es-MX",
 		"french" : "fr-FR",
-		"chinese" : "zh-TW",
 		"korean" : "ko-KR",
 		"german" : "de-DE",
 		"italian" : "it-IT",
@@ -149,11 +148,11 @@ rescheduleCard = function(path) {
 	// reschedule the current card 
 	$.post(path, dataCard)
 	.done(function(nextCardData) {
-		console.log(nextCardData);
 		prepareNextCard(nextCardData);
 	})
 	.fail(function(data) {
-
+		// there are no more cards
+		noMoreCards();
 	});
 }
 
@@ -167,6 +166,13 @@ get_memory_stage = function(stage) {
 	} else {
 		return "Unknow stage 🤔";
 	}
+}
+
+noMoreCards = function() {
+	// Display next card's fields
+	$("#word-recall").text("No more cards");
+	$("#card-answer").css("display", "none");
+
 }
 
 prepareNextCard = function(nextCardData) {

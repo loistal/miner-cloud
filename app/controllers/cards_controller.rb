@@ -91,7 +91,12 @@ class CardsController < ApplicationController
 		@nextCard.save
 
 		# return the next card to be displayed
-		render json: get_next_card()
+		begin
+			returnCard = get_next_card()
+			render json: returnCard
+		rescue # no more cards
+			render json: {error: "no more cards"}, status: :not_found
+		end
 	end
 
 	def reschedule_again
