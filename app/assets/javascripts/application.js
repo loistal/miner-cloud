@@ -18,6 +18,10 @@
 //= require turbolinks
 //= require_tree .
 
+playPresentationVideo = function() {
+	
+}
+
 toggleModal = function() {
 	$("#navigationModal").modal("toggle");
 }

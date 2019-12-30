@@ -10,12 +10,26 @@
      </div>
      <div class="col-md-4">
        <div class="video-enroll">
-        <%= image_tag("video-explainer.jpg", :alt => "video", :class => "video-explainer") %>
-
-
+        <div data-toggle="modal" data-target="#presentation-modal">
+          <%= image_tag("video-explainer.jpg", :alt => "video", :class => "video-explainer") %>
+        </div>
         <button type="button" class="btn btn-primary miner-button full-width" data-toggle="modal" data-target="#exampleModal" data-whatever="">Start learning</button>
-
       </div>
+
+      <!-- video modal that pops up when the user clicks on the image -->
+      <div id="presentation-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+  
+            <div id="video-modal-body" class="modal-body">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/tCUBb_BL-yw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+   
+          </div>
+        </div>
+      </div>
+      <!-- / end video modal -->
+
     </div>
   </div>
 
