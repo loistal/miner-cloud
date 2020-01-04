@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
 	helper_method :current_user, :logged_in?
 
+	# users need to be logged in on every single page by default
+	# (see https://stackoverflow.com/questions/5056451/redirect-to-login-page-if-user-not-logged-in)
+	before_action :require_user
+
 	def current_user
 		@current_user ||= User.find(session[:user_id]) if session[:user_id]
 	end
@@ -13,7 +17,7 @@ class ApplicationController < ActionController::Base
 	def require_user
 		if !logged_in?
 			flash[:danger] = "You must be logged in to perform that action"
-			redirect_to login_path
+			redirect_to root_path
 		end
 	end
 
